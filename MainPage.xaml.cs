@@ -1,9 +1,15 @@
-﻿namespace wave
+﻿using MySqlConnector;
+using System.IO;
+using System;
+using System.IO;
+using System.Linq;
+using System.Configuration;
+
+
+namespace wave
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
@@ -11,14 +17,17 @@
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
-            count++;
+            var cs = "Server=192.168.0.3;database=project;user=root;password=";
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            using (var con = new MySqlConnection(cs))
+            {
+                con.Open();
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+                string sql = "SELECT user_surname FROM users;";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                var userSurname = cmd.ExecuteScalar()?.ToString();
+                HelloText.Text = "User Surname: " + userSurname;
+            }
         }
     }
 
