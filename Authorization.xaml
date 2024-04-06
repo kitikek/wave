@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="wave.Authorization"
+             Title="Authorization">
+    
+    <VerticalStackLayout Margin="60">
+        <Label 
+            FontSize="40"
+            Text="Логин"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry    
+            CharacterSpacing="1"
+            Placeholder="Введите логин"
+            ClearButtonVisibility="WhileEditing"/>
+        <Label 
+            FontSize="40"
+            Text="Пароль"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />   
+        <Entry
+            CharacterSpacing="1"
+            IsPassword="True"
+            Placeholder="Введите пароль"
+            ClearButtonVisibility="WhileEditing"/>
+        <Button
+            FontSize="20"
+            Margin="60"            
+            Text="Войти"/>
+    </VerticalStackLayout>
+</ContentPage>
