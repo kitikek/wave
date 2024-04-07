@@ -2,7 +2,6 @@
 {
     public partial class AppShell : Shell
     {
-        private int parentSelectionCount = 0;
         public AppShell()
         {
             InitializeComponent();
