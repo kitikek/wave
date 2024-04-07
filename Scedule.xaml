@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="wave.Scedule"
-             Title="Scedule">
+             Title="Schedule">
     <VerticalStackLayout>
-        <Label 
-            Text="This is Scedule"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ScrollView>
+            <StackLayout x:Name="LessonsStackLayout">
+            </StackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>
