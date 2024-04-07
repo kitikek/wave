@@ -6,4 +6,8 @@ public partial class WhoAreYou : ContentPage
 	{
 		InitializeComponent();
 	}
+    private async void StudentButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//Authorization");
+    }
 }

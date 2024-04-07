@@ -7,11 +7,16 @@
     Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
+        Title="WhoAreYou"
+        ContentTemplate="{DataTemplate local:WhoAreYou}"
+        Route="WhoAreYou" 
+        Icon="authorization.png"/>
+
+    <ShellContent
         Title="Authorization"
         ContentTemplate="{DataTemplate local:Authorization}"
         Route="Authorization" 
-        Icon="authorization.png"
-        IsVisible="False"/>
+        Icon="authorization.png"/>
 
     <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
