@@ -122,6 +122,7 @@ public partial class Scedule : ContentPage
         }
     }
 
+
     private List<string> GetLessonsInfoByGroupId(MySqlConnection connection, int groupId)
     {
         List<string> lessonsInfo = new List<string>();
