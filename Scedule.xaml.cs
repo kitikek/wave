@@ -91,7 +91,14 @@ public partial class Scedule : ContentPage
             command.Parameters.AddWithValue("@login", login);
 
             object result = command.ExecuteScalar();
-            return result == null ? 0 : Convert.ToInt32(result);
+            if (result == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt32(result);
+            }
         }
     }
 
@@ -104,7 +111,14 @@ public partial class Scedule : ContentPage
             command.Parameters.AddWithValue("@studentId", studentId);
 
             object result = command.ExecuteScalar();
-            return result == null ? 0 : Convert.ToInt32(result);
+            if (result == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt32(result);
+            }
         }
     }
 
