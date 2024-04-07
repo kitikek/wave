@@ -10,7 +10,8 @@
             Text="Логин"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Entry    
+        <Entry   
+            x:Name="LoginEntry"
             CharacterSpacing="1"
             Placeholder="Введите логин"
             ClearButtonVisibility="WhileEditing"/>
@@ -20,13 +21,16 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />   
         <Entry
+            x:Name="PasswordEntry"
             CharacterSpacing="1"
             IsPassword="True"
             Placeholder="Введите пароль"
             ClearButtonVisibility="WhileEditing"/>
         <Button
+            x:Name="LoginButton"
             FontSize="20"
-            Margin="60"            
+            Margin="60"  
+            BackgroundColor="Gray"
             Text="Войти"
             Clicked="LoginButtonClicked"/>
     </VerticalStackLayout>

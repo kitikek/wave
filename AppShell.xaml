@@ -8,9 +8,10 @@
 
 
     <ShellContent
-        Title="Notifications"
+        Title="Authorization"
         ContentTemplate="{DataTemplate local:Authorization}"
-        Route="Authorization" />
+        Route="Authorization" 
+        Icon="authorization.png"/>
 
     <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
