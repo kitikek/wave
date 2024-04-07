@@ -18,7 +18,8 @@
         Route="Authorization" 
         Icon="authorization.png"/>
 
-    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem x:Name="Home" FlyoutDisplayOptions="AsMultipleItems">
+ 
         <ShellContent
             Title="Notifications"
             ContentTemplate="{DataTemplate local:Notification}"
@@ -42,6 +43,13 @@
             ContentTemplate="{DataTemplate local:Grade}"
             Route="Grade" 
             Icon="grade.png"/>
+
+        <ShellContent
+            x:Name="PaymentContent"
+            Title="Payment"
+            ContentTemplate="{DataTemplate local:Payment}"
+            Route="Payment" 
+            Icon="payment.png"/>
 
     </FlyoutItem>
 </Shell>

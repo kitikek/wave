@@ -13,12 +13,14 @@
             x:Name="TeacherButton"
             FontSize="30"
             Margin="20"  
-            Text="Я учитель"/>
+            Text="Я учитель"
+            Clicked="TeacherButtonClicked"/>
         <Button
             x:Name="ParentButton"
             FontSize="30"
             Margin="20"  
-            Text="Я родитель"/>
+            Text="Я родитель"
+            Clicked="ParentButtonClicked"/>
         <Button
             x:Name="StudentButton"
             FontSize="30"
@@ -29,6 +31,7 @@
             x:Name="DirectorButton"
             FontSize="30"
             Margin="20"  
-            Text="Я руководитель"/>
+            Text="Я руководитель"
+            Clicked="DirectorButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>
