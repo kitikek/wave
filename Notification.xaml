@@ -4,10 +4,12 @@
              x:Class="wave.Notification">
     
     <VerticalStackLayout>
-        <Label 
-            Text="This is Notifications"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <VerticalStackLayout>
+            <ScrollView>
+                <StackLayout x:Name="NotificationStack">
+                </StackLayout>
+            </ScrollView>
+        </VerticalStackLayout>
     </VerticalStackLayout>
     
 </ContentPage>

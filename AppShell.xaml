@@ -7,11 +7,6 @@
     Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:WhoAreYou}"
-        Route="WhoAreYou" 
-        Icon="authorization.png"/>
-
-    <ShellContent
         Title="Authorization"
         ContentTemplate="{DataTemplate local:Authorization}"
         Route="Authorization" 
