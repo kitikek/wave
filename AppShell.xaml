@@ -18,6 +18,12 @@
         Route="Authorization" 
         Icon="authorization.png"/>
 
+    <ShellContent
+        Title="ChildChoose"
+        ContentTemplate="{DataTemplate local:ChildChoose}"
+        Route="ChildChoose" 
+        Icon="change_child.png"/>
+
     <FlyoutItem x:Name="Home" FlyoutDisplayOptions="AsMultipleItems">
  
         <ShellContent
