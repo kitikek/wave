@@ -6,12 +6,17 @@
     xmlns:local="clr-namespace:wave"
     Shell.FlyoutBehavior="Flyout">
 
+    <ShellContent
+        ContentTemplate="{DataTemplate local:WhoAreYou}"
+        Route="WhoAreYou" 
+        Icon="authorization.png"/>
 
     <ShellContent
         Title="Authorization"
         ContentTemplate="{DataTemplate local:Authorization}"
         Route="Authorization" 
-        Icon="authorization.png"/>
+        Icon="authorization.png"
+        IsVisible="False"/>
 
     <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent

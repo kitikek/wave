@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="wave.WhoAreYou">
+    <VerticalStackLayout Margin="20">
+        <Label
+            Margin="30"
+            Text="Выберите тип пользователя:"
+            FontSize="40"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+        <Button
+            x:Name="TeacherButton"
+            FontSize="30"
+            Margin="20"  
+            Text="Я учитель"/>
+        <Button
+            x:Name="ParentButton"
+            FontSize="30"
+            Margin="20"  
+            Text="Я родитель"/>
+        <Button
+            x:Name="StudentButton"
+            FontSize="30"
+            Margin="20"  
+            Text="Я ученик"/>
+        <Button
+            x:Name="DirectorButton"
+            FontSize="30"
+            Margin="20"  
+            Text="Я руководитель"/>
+    </VerticalStackLayout>
+</ContentPage>
