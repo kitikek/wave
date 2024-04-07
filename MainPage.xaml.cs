@@ -17,7 +17,7 @@ namespace wave
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
-            var cs = "Server = 192.168.1.5; User ID = root; Database = project";
+            var cs = ConnString.connString;
 
             using (var con = new MySqlConnection(cs))
             {
