@@ -27,6 +27,7 @@
         <Button
             FontSize="20"
             Margin="60"            
-            Text="Войти"/>
+            Text="Войти"
+            Clicked="LoginButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>

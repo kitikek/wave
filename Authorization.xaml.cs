@@ -6,5 +6,10 @@ public partial class Authorization : ContentPage
 	{
 		InitializeComponent();
 	}
+    private async void LoginButtonClicked(object sender, EventArgs e)
+    {
+        // Navigate to the Home flyout item after button click
+        await Shell.Current.GoToAsync("//Notification");
+    }
 
 }
