@@ -23,7 +23,8 @@
             x:Name="StudentButton"
             FontSize="30"
             Margin="20"  
-            Text="Я ученик"/>
+            Text="Я ученик"
+            Clicked="StudentButtonClicked"/>
         <Button
             x:Name="DirectorButton"
             FontSize="30"

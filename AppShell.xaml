@@ -14,9 +14,7 @@
     <ShellContent
         Title="Authorization"
         ContentTemplate="{DataTemplate local:Authorization}"
-        Route="Authorization" 
-        Icon="authorization.png"
-        IsVisible="False"/>
+        Route="Authorization" />
 
     <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
