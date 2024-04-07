@@ -18,18 +18,77 @@ public partial class Scedule : ContentPage
             connection.Open();
 
             string desiredLogin = Authorization.Login;
-
-            int studentId = GetStudentIdByLogin(connection, desiredLogin);
-
-            if (studentId != 0)
+            if (WhoAreYou.isStudentSelected)
             {
-                int groupId = GetGroupIdByStudentId(connection, studentId);
 
-                if (groupId != 0)
+                int studentId = GetStudentIdByLogin(connection, desiredLogin);
+
+                if (studentId != 0)
                 {
-                    List<string> lessonsInfo = GetLessonsInfoByGroupId(connection, groupId);
+                    int groupId = GetGroupIdByStudentId(connection, studentId);
 
-                    if (lessonsInfo.Count == 0)
+                    if (groupId != 0)
+                    {
+                        List<string> lessonsInfo = GetLessonsInfoByGroupId(connection, groupId);
+
+                        if (lessonsInfo.Count == 0)
+                        {
+                            Label noLessonsLabel = new Label
+                            {
+                                Text = "Расписания пока нет",
+                                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                VerticalOptions = LayoutOptions.CenterAndExpand
+                            };
+
+                            LessonsStackLayout.Children.Add(noLessonsLabel);
+                        }
+                        else
+                        {
+                            foreach (string lessonInfo in lessonsInfo)
+                            {
+                                var frame = new Frame
+                                {
+                                    Content = new Label { Text = lessonInfo },
+                                    Margin = new Thickness(10)
+                                };
+
+                                LessonsStackLayout.Children.Add(frame);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Label groupNotFoundErrorLabel = new Label
+                        {
+                            Text = "Не найдена группа",
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            VerticalOptions = LayoutOptions.CenterAndExpand
+                        };
+
+                        LessonsStackLayout.Children.Add(groupNotFoundErrorLabel);
+                    }
+                }
+                else
+                {
+                    Label studentNotFoundErrorLabel = new Label
+                    {
+                        Text = "Не найден ученик",
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.CenterAndExpand
+                    };
+
+                    LessonsStackLayout.Children.Add(studentNotFoundErrorLabel);
+                }
+            }
+            if (WhoAreYou.isTeacherSelected)
+            {
+                int teacherId = GetTeacherIdByLogin(connection, desiredLogin);
+
+                if (teacherId != 0)
+                {
+                    List<string> teacherLessonsInfo = GetLessonsInfoByTeacherId(connection, teacherId);
+
+                    if (teacherLessonsInfo.Count == 0)
                     {
                         Label noLessonsLabel = new Label
                         {
@@ -42,7 +101,7 @@ public partial class Scedule : ContentPage
                     }
                     else
                     {
-                        foreach (string lessonInfo in lessonsInfo)
+                        foreach (string lessonInfo in teacherLessonsInfo)
                         {
                             var frame = new Frame
                             {
@@ -56,26 +115,15 @@ public partial class Scedule : ContentPage
                 }
                 else
                 {
-                    Label groupNotFoundErrorLabel = new Label
+                    Label teacherNotFoundErrorLabel = new Label
                     {
-                        Text = "Не найдена группа",
+                        Text = "Не найден учитель",
                         HorizontalOptions = LayoutOptions.CenterAndExpand,
                         VerticalOptions = LayoutOptions.CenterAndExpand
                     };
 
-                    LessonsStackLayout.Children.Add(groupNotFoundErrorLabel);
+                    LessonsStackLayout.Children.Add(teacherNotFoundErrorLabel);
                 }
-            }
-            else
-            {
-                Label studentNotFoundErrorLabel = new Label
-                {
-                    Text = "Не найден ученик",
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    VerticalOptions = LayoutOptions.CenterAndExpand
-                };
-
-                LessonsStackLayout.Children.Add(studentNotFoundErrorLabel);
             }
 
             connection.Close();
@@ -132,6 +180,50 @@ public partial class Scedule : ContentPage
         using (MySqlCommand command = new MySqlCommand(query, connection))
         {
             command.Parameters.AddWithValue("@groupId", groupId);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string lessonInfo = $"Группа: {reader["group_name"]},\n" +
+                        $"{reader["day_name"]}, " + $" {reader["lesson_start"]} - {reader["lesson_end"]}, \n" +
+                        $"Кабинет: {reader["room_name"]}";
+                    lessonsInfo.Add(lessonInfo);
+                }
+            }
+        }
+
+        return lessonsInfo;
+    }
+    private int GetTeacherIdByLogin(MySqlConnection connection, string login)
+    {
+        string query = "SELECT teacher_id FROM teacher t JOIN users u ON t.teacher_user_id = u.user_id WHERE u.user_login = @login";
+
+        using (MySqlCommand command = new MySqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue("@login", login);
+
+            object result = command.ExecuteScalar();
+            if (result == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt32(result);
+            }
+        }
+    }
+
+    private List<string> GetLessonsInfoByTeacherId(MySqlConnection connection, int teacherId)
+    {
+        List<string> lessonsInfo = new List<string>();
+
+        string query = "SELECT l.lesson_start, l.lesson_end, g.group_name, d.day_name, r.room_name FROM lesson l JOIN groups g ON l.lesson_group_id = g.group_id JOIN day d ON l.lesson_day_id = d.day_id JOIN room r ON l.lesson_room_id = r.room_id WHERE g.group_teacher_id = @teacherId";
+
+        using (MySqlCommand command = new MySqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue("@teacherId", teacherId);
 
             using (MySqlDataReader reader = command.ExecuteReader())
             {
