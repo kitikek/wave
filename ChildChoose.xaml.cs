@@ -2,7 +2,9 @@ namespace wave;
 
 public partial class ChildChoose : ContentPage
 {
-	public static string[] children;
+	public static int childCount;
+
+    public static string[] children = new string[childCount];
 	public ChildChoose()
 	{
 		InitializeComponent();
