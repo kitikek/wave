@@ -92,7 +92,7 @@ public partial class Authorization : ContentPage
 
             //}
 
-            await Shell.Current.GoToAsync("//ChildChoose");
+            await Shell.Current.GoToAsync("//Notification");
         }
     }
   

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
+    x:Name="AllShell"
     x:Class="wave.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -18,11 +19,7 @@
         Route="Authorization" 
         Icon="authorization.png"/>
 
-    <ShellContent
-        Title="ChildChoose"
-        ContentTemplate="{DataTemplate local:ChildChoose}"
-        Route="ChildChoose" 
-        Icon="change_child.png"/>
+    
 
     <FlyoutItem x:Name="Home" FlyoutDisplayOptions="AsMultipleItems">
  
@@ -39,15 +36,31 @@
             Icon="schedule.png"/>
         
         <ShellContent
+            x:Name="BaseAttContent"
             Title="Attendance"
             ContentTemplate="{DataTemplate local:Attendance}"
             Route="Attendance" 
             Icon="attendance.png"/>
-        
+
         <ShellContent
+            x:Name="TeacherAttContent"
+            Title="AttendanceTeacher"
+            ContentTemplate="{DataTemplate local:AttendanceTeacher}"
+            Route="AttendanceTeacher" 
+            Icon="attendance.png"/>
+
+        <ShellContent
+            x:Name="BaseGradeContent"
             Title="Grade"
             ContentTemplate="{DataTemplate local:Grade}"
             Route="Grade" 
+            Icon="grade.png"/>
+
+        <ShellContent
+            x:Name="TeacherGradeContent"
+            Title="GradeTeacher"
+            ContentTemplate="{DataTemplate local:GradeTeacher}"
+            Route="GradeTeacher" 
             Icon="grade.png"/>
 
         <ShellContent
