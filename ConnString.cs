@@ -8,6 +8,6 @@ namespace wave
 {
     public class ConnString
     {
-        public static string connString = "Server = 192.168.0.3; User ID = root; Database = project";
+        public static string connString = "Server = 192.168.1.5; User ID = root; Database = project";
     }
 }
