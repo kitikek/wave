@@ -4,7 +4,43 @@
              x:Class="wave.AttendanceTeacher"
              Title="AttendanceTeacher">
     <StackLayout>
-        <Picker x:Name="GroupPicker" Title="Select Group" />
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Row 1 -->
+            <Picker x:Name="GroupPicker" Grid.Column="0" Grid.RowSpan="3" VerticalOptions="Center" Title="Select Group" Margin="10"/>
+
+            <Picker Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" VerticalOptions="FillAndExpand" Title="Lesson Schedule"/>
+            <DatePicker Grid.Column="3" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End"/>
+            <Button Grid.Column="4" Grid.Row="0" Text="Add" Margin="15,20,15,0"/>
+
+            <!-- Row 2 -->
+            <Picker Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Title="Lesson" />
+            <Button Grid.Column="4" Grid.Row="1" Text="Delete" Margin="15,20,15,0"/>
+
+            <!-- Row 3 -->
+            <Picker Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Student" />
+            <Picker Grid.Column="2" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Lesson" />
+            <Picker Grid.Column="3" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Value">
+                <Picker.ItemsSource>
+                    <x:String>+</x:String>
+                    <x:String>-</x:String>
+                    <x:String>?</x:String>
+                </Picker.ItemsSource>
+            </Picker>
+            <Button Grid.Column="4" Grid.Row="2" Text="Update" Margin="15,20,15,0"/>
+        </Grid>
 
         <ScrollView>
             <Grid x:Name="AttendanceGrid" Margin="10">
