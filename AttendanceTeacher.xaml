@@ -32,13 +32,7 @@
             <!-- Row 3 -->
             <Picker Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Student" />
             <Picker Grid.Column="2" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Lesson" />
-            <Picker Grid.Column="3" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Value">
-                <Picker.ItemsSource>
-                    <x:String>+</x:String>
-                    <x:String>-</x:String>
-                    <x:String>?</x:String>
-                </Picker.ItemsSource>
-            </Picker>
+            <Picker Grid.Column="3" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Value" />
             <Button Grid.Column="4" Grid.Row="2" Text="Update" Margin="15,20,15,0"/>
         </Grid>
 
