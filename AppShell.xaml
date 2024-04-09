@@ -19,9 +19,38 @@
         Route="Authorization" 
         Icon="authorization.png"/>
 
-    
+    <FlyoutItem x:Name="Student" FlyoutDisplayOptions="AsMultipleItems">
 
-    <FlyoutItem x:Name="Home" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Notifications"
+            ContentTemplate="{DataTemplate local:Notification}"
+            Route="Notification" 
+            Icon="notifications.png"/>
+
+        <ShellContent
+            Title="Schedule"
+            ContentTemplate="{DataTemplate local:Scedule}"
+            Route="Scedule" 
+            Icon="schedule.png"/>
+
+        <ShellContent
+            x:Name="StudentAttContent"
+            Title="Attendance"
+            ContentTemplate="{DataTemplate local:Attendance}"
+            Route="Attendance" 
+            Icon="attendance.png"/>
+
+        <ShellContent
+            x:Name="StudentGradeContent"
+            Title="Grade"
+            ContentTemplate="{DataTemplate local:Grade}"
+            Route="Grade" 
+            Icon="grade.png"/>
+
+    </FlyoutItem>
+
+
+    <FlyoutItem x:Name="Parent" FlyoutDisplayOptions="AsMultipleItems">
  
         <ShellContent
             Title="Notifications"
@@ -34,13 +63,42 @@
             ContentTemplate="{DataTemplate local:Scedule}"
             Route="Scedule" 
             Icon="schedule.png"/>
-        
+
         <ShellContent
-            x:Name="BaseAttContent"
+            x:Name="ParentAttContent"
             Title="Attendance"
             ContentTemplate="{DataTemplate local:Attendance}"
             Route="Attendance" 
             Icon="attendance.png"/>
+
+        <ShellContent
+            x:Name="ParentGradeContent"
+            Title="Grade"
+            ContentTemplate="{DataTemplate local:Grade}"
+            Route="Grade" 
+            Icon="grade.png"/>
+
+        <ShellContent
+            x:Name="PaymentContent"
+            Title="Payment"
+            ContentTemplate="{DataTemplate local:Payment}"
+            Route="Payment" 
+            Icon="payment.png"/>
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="Teacher" FlyoutDisplayOptions="AsMultipleItems">
+        
+        <ShellContent
+            Title="Notifications"
+            ContentTemplate="{DataTemplate local:Notification}"
+            Route="Notification" 
+            Icon="notifications.png"/>
+
+        <ShellContent
+            Title="Schedule"
+            ContentTemplate="{DataTemplate local:Scedule}"
+            Route="Scedule" 
+            Icon="schedule.png"/>
 
         <ShellContent
             x:Name="TeacherAttContent"
@@ -50,25 +108,35 @@
             Icon="attendance.png"/>
 
         <ShellContent
-            x:Name="BaseGradeContent"
-            Title="Grade"
-            ContentTemplate="{DataTemplate local:Grade}"
-            Route="Grade" 
-            Icon="grade.png"/>
-
-        <ShellContent
             x:Name="TeacherGradeContent"
             Title="GradeTeacher"
             ContentTemplate="{DataTemplate local:GradeTeacher}"
             Route="GradeTeacher" 
             Icon="grade.png"/>
 
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="Director" FlyoutDisplayOptions="AsMultipleItems">
+        
         <ShellContent
-            x:Name="PaymentContent"
-            Title="Payment"
-            ContentTemplate="{DataTemplate local:Payment}"
-            Route="Payment" 
+            x:Name="DirectorNotificationsContent"
+            Title="NotificationsDirector"
+            ContentTemplate="{DataTemplate local:NotificationsDirector}"
+            Route="NotificationsDirector" 
+            Icon="notifications.png"/>
+
+        <ShellContent
+            x:Name="DirectorPaymentContent"
+            Title="PaymentDirector"
+            ContentTemplate="{DataTemplate local:PaymentDirector}"
+            Route="PaymentDirector" 
             Icon="payment.png"/>
 
-    </FlyoutItem>
+        <ShellContent
+            x:Name="DirectorScheduleContent"
+            Title="ScheduleDirector"
+            ContentTemplate="{DataTemplate local:ScheduleDirector}"
+            Route="ScheduleDirector" 
+            Icon="schedule.png"/>
+    </FlyoutItem>  
 </Shell>

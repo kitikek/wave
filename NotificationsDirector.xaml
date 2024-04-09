@@ -5,7 +5,7 @@
              Title="NotificationsDirector">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="This is NotificationsDirector"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

@@ -9,45 +9,41 @@
             WhoAreYou.StudentSelectedChanged += (sender, e) =>
             {
                 if (WhoAreYou.isStudentSelected)
-                {
-                    Home.Items.Remove(PaymentContent);
-                    Home.Items.Remove(TeacherAttContent);
-                    Home.Items.Remove(TeacherGradeContent);
-                    Home.Items.Add(BaseAttContent);
-                    Home.Items.Add(BaseGradeContent);
+                {                    
+                    AllShell.Items.Remove(Parent);
+                    AllShell.Items.Remove(Director);
+                    AllShell.Items.Remove(Teacher);
+                    AllShell.Items.Add(Student);
                 }
             };
             WhoAreYou.TeacherSelectedChanged += (sender, e) =>
             {
                 if (WhoAreYou.isTeacherSelected)
                 {
-                    Home.Items.Remove(PaymentContent);
-                    Home.Items.Remove(BaseGradeContent);
-                    Home.Items.Remove(BaseAttContent);
-                    Home.Items.Add(TeacherAttContent);
-                    Home.Items.Add(TeacherGradeContent);                    
+                    AllShell.Items.Remove(Student);
+                    AllShell.Items.Remove(Parent);                    
+                    AllShell.Items.Remove(Director);
+                    AllShell.Items.Add(Teacher);
                 }
             };
             WhoAreYou.ParentSelectedChanged += (sender, e) =>
             {
                 if (WhoAreYou.isParentSelected)
                 {
-                    Home.Items.Add(PaymentContent);
-                    Home.Items.Remove(TeacherAttContent);
-                    Home.Items.Remove(TeacherGradeContent);
-                    Home.Items.Add(BaseAttContent);
-                    Home.Items.Add(BaseGradeContent);
+                    AllShell.Items.Remove(Student);
+                    AllShell.Items.Remove(Teacher);
+                    AllShell.Items.Remove(Director);
+                    AllShell.Items.Add(Parent);
                 }
             };
             WhoAreYou.DirectorSelectedChanged += (sender, e) =>
             {
                 if (WhoAreYou.isDirectorSelected)
                 {
-                    Home.Items.Remove(PaymentContent);
-                    Home.Items.Remove(TeacherAttContent);
-                    Home.Items.Remove(TeacherGradeContent);
-                    Home.Items.Add(BaseAttContent);
-                    Home.Items.Add(BaseGradeContent);
+                    AllShell.Items.Remove(Student);
+                    AllShell.Items.Remove(Parent);
+                    AllShell.Items.Remove(Teacher);
+                    AllShell.Items.Add(Director);
                 }
             };
         }

@@ -5,7 +5,7 @@
              Title="ScheduleDirector">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="This is ScheduleDirector"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

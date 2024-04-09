@@ -5,7 +5,7 @@
              Title="PaymentDirector">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="This is PaymentDirector"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
