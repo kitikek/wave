@@ -9,7 +9,7 @@ public partial class ChildChoose : ContentPage
 	{
 		InitializeComponent();
 	}
-	public async void CountChildren(object sender, EventArgs e)
+	public async void YourChildren(object sender, EventArgs e)
 	{
 
 	}

@@ -19,26 +19,38 @@ public partial class WhoAreYou : ContentPage
     {
         await Shell.Current.GoToAsync("//Authorization");
         isStudentSelected = true;
+        isTeacherSelected = false;
+        isParentSelected = false;
+        isDirectorSelected = false;
 
         StudentSelectedChanged?.Invoke(this, EventArgs.Empty);
     }
     private async void TeacherButtonClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//Authorization");
+        isStudentSelected = false;
         isTeacherSelected = true;
+        isParentSelected = false;
+        isDirectorSelected = false;
 
         TeacherSelectedChanged?.Invoke(this, EventArgs.Empty);
     }
     private async void ParentButtonClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//Authorization");
+        isStudentSelected = false;
+        isTeacherSelected = false;
         isParentSelected = true;
+        isDirectorSelected = false;
 
         ParentSelectedChanged?.Invoke(this, EventArgs.Empty);
     }
     private async void DirectorButtonClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//Authorization");
+        isStudentSelected = false;
+        isTeacherSelected = false;
+        isParentSelected = false;
         isDirectorSelected = true;
 
         DirectorSelectedChanged?.Invoke(this, EventArgs.Empty);

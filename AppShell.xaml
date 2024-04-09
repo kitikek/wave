@@ -19,7 +19,7 @@
         Route="Authorization" 
         Icon="authorization.png"/>
 
-    <FlyoutItem x:Name="Student" FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem x:Name="Student" FlyoutDisplayOptions="AsMultipleItems" Route="Student">
 
         <ShellContent
             Title="Notifications"
@@ -50,7 +50,7 @@
     </FlyoutItem>
 
 
-    <FlyoutItem x:Name="Parent" FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem x:Name="Parent" FlyoutDisplayOptions="AsMultipleItems" Route="Parent">
  
         <ShellContent
             Title="Notifications"
@@ -86,7 +86,7 @@
             Icon="payment.png"/>
     </FlyoutItem>
 
-    <FlyoutItem x:Name="Teacher" FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem x:Name="Teacher" FlyoutDisplayOptions="AsMultipleItems" Route="Teacher">
         
         <ShellContent
             Title="Notifications"
@@ -116,7 +116,7 @@
 
     </FlyoutItem>
 
-    <FlyoutItem x:Name="Director" FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem x:Name="Director" FlyoutDisplayOptions="AsMultipleItems" Route="Director">
         
         <ShellContent
             x:Name="DirectorNotificationsContent"
