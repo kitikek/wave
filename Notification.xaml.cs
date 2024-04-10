@@ -15,7 +15,7 @@ public partial class Notification : ContentPage
         {
             con.Open();
 
-            string sql = "SELECT notification_text, notification_date FROM notification;";
+            string sql = "SELECT notification_text, notification_date FROM notification ORDER BY notification_date DESC;";
             MySqlCommand cmd = new MySqlCommand(sql, con);
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -27,7 +27,7 @@ public partial class Notification : ContentPage
                 {
                     Text = formattedDate,
                     FontFamily = "Arial",
-                    TextColor = Color.FromHex("#2D4D8F") 
+                    TextColor = Color.FromHex("#2D4D8F")
                 };
 
                 Frame notificationFrame = new Frame

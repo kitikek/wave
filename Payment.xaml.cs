@@ -145,15 +145,9 @@ public partial class Payment : ContentPage
             Margin = new Thickness(10, 0, 10, 0)
         };
 
-        Label fullPriceLabel = new Label
-        {
-            Text = $"Стоимость курса: {coursePrice}",
-            Margin = new Thickness(10, 0, 10, 0),
-        };
-
         Label discountedPriceLabel = new Label
         {
-            Text = $"Цена со скидкой: {totalPrice}",
+            Text = $"Стоимость со скидкой: {totalPrice}",
             Margin = new Thickness(10, 0, 10, 0) 
         };
 
@@ -164,7 +158,6 @@ public partial class Payment : ContentPage
         };
 
         mainStackLayout.Children.Add(courseLabel);
-        mainStackLayout.Children.Add(fullPriceLabel);
         mainStackLayout.Children.Add(discountedPriceLabel);
         mainStackLayout.Children.Add(singlePaymentLabel);
 
