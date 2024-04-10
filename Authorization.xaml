@@ -14,7 +14,8 @@
             x:Name="LoginEntry"
             CharacterSpacing="1"
             Placeholder="Введите логин"
-            ClearButtonVisibility="WhileEditing"/>
+            ClearButtonVisibility="WhileEditing"
+            MaximumWidthRequest="400"/>
         <Label 
             FontSize="40"
             Text="Пароль"
@@ -25,13 +26,15 @@
             CharacterSpacing="1"
             IsPassword="True"
             Placeholder="Введите пароль"
-            ClearButtonVisibility="WhileEditing"/>
+            ClearButtonVisibility="WhileEditing"
+            MaximumWidthRequest="400"/>
         <Button
             x:Name="LoginButton"
             FontSize="20"
             Margin="60"  
             BackgroundColor="Gray"
             Text="Войти"
-            Clicked="LoginButtonClicked"/>
+            Clicked="LoginButtonClicked"
+            MaximumWidthRequest="300"/>
     </VerticalStackLayout>
 </ContentPage>

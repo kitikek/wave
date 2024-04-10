@@ -14,24 +14,28 @@
             FontSize="30"
             Margin="20"  
             Text="Я учитель"
-            Clicked="TeacherButtonClicked"/>
+            Clicked="TeacherButtonClicked"
+            MaximumWidthRequest="400"/>
         <Button
             x:Name="ParentButton"
             FontSize="30"
             Margin="20"  
             Text="Я родитель"
-            Clicked="ParentButtonClicked"/>
+            Clicked="ParentButtonClicked"
+            MaximumWidthRequest="400"/>
         <Button
             x:Name="StudentButton"
             FontSize="30"
             Margin="20"  
             Text="Я ученик"
-            Clicked="StudentButtonClicked"/>
+            Clicked="StudentButtonClicked"
+            MaximumWidthRequest="400"/>
         <Button
             x:Name="DirectorButton"
             FontSize="30"
             Margin="20"  
             Text="Я руководитель"
-            Clicked="DirectorButtonClicked"/>
+            Clicked="DirectorButtonClicked"
+            MaximumWidthRequest="400"/>
     </VerticalStackLayout>
 </ContentPage>
