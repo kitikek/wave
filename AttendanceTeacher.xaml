@@ -21,19 +21,19 @@
             <!-- Row 1 -->
             <Picker x:Name="GroupPicker" Grid.Column="0" Grid.RowSpan="3" VerticalOptions="Center" Title="Select Group" Margin="10"/>
 
-            <Picker Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" VerticalOptions="FillAndExpand" Title="Lesson Schedule"/>
-            <DatePicker Grid.Column="3" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End"/>
-            <Button Grid.Column="4" Grid.Row="0" Text="Add" Margin="15,20,15,0"/>
+            <Picker x:Name="SchedulePicker" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Title="Lesson Schedule" VerticalOptions="StartAndExpand"/>
+            <DatePicker x:Name="Dat" Grid.Column="3" Grid.Row="0" HorizontalOptions="Center"/>
+            <Button x:Name="AddButton" Grid.Column="4" Grid.Row="0" Text="Add" Margin="15,20,15,0"/>
 
             <!-- Row 2 -->
-            <Picker Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Title="Lesson" />
-            <Button Grid.Column="4" Grid.Row="1" Text="Delete" Margin="15,20,15,0"/>
+            <Picker x:Name="LessonPicker" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Title="Lesson" VerticalOptions="StartAndExpand"/>
+            <Button x:Name="DeleteButton" Grid.Column="4" Grid.Row="1" Text="Delete" Margin="15,20,15,0"/>
 
             <!-- Row 3 -->
-            <Picker Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Student" />
-            <Picker Grid.Column="2" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Lesson" />
-            <Picker Grid.Column="3" Grid.Row="2" VerticalOptions="FillAndExpand" Title="Value" />
-            <Button Grid.Column="4" Grid.Row="2" Text="Update" Margin="15,20,15,0"/>
+            <Picker x:Name="StudentPicker" Grid.Column="1" Grid.Row="2" VerticalOptions="StartAndExpand" Title="Student" />
+            <Picker x:Name="LessonPicker1" Grid.Column="2" Grid.Row="2" VerticalOptions="StartAndExpand" Title="Lesson" />
+            <Picker x:Name="ValuePicker" Grid.Column="3" Grid.Row="2" VerticalOptions="StartAndExpand" Title="Value" />
+            <Button x:Name="UpdateButton" Grid.Column="4" Grid.Row="2" Text="Update" Margin="15,20,15,0"/>
         </Grid>
 
         <ScrollView>
