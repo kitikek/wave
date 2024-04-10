@@ -1,9 +1,13 @@
-namespace wave;
+using System;
 
-public partial class GradeTeacher : ContentPage
+namespace wave
 {
-	public GradeTeacher()
-	{
-		InitializeComponent();
-	}
+    public partial class GradeTeacher : ContentPage
+    {
+        public GradeTeacher()
+        {
+            InitializeComponent();
+
+        }
+    }
 }
