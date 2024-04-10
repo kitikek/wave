@@ -39,27 +39,213 @@ public partial class ScheduleDirector : ContentPage
     {
         foreach (var lesson in LessonsList)
         {
+            #region England
             if (lesson.Room == "Англия" && lesson.Day == 1)
             {
-                if (MondayLabel.Text != null)
-                    MondayLabel.Text += $"{Environment.NewLine}{lesson.Str}";
+                if (MondayLabelEngland.Text != null)
+                    MondayLabelEngland.Text += $"{Environment.NewLine}{lesson.Str}";
                 else
-                    MondayLabel.Text = lesson.Str;
+                    MondayLabelEngland.Text = lesson.Str;
             }
             if (lesson.Room == "Англия" && lesson.Day == 2)
             {
-                if (TuesdayLabel.Text != null)
-                    TuesdayLabel.Text += $"{Environment.NewLine}{lesson.Str}";
+                if (TuesdayLabelEngland.Text != null)
+                    TuesdayLabelEngland.Text += $"{Environment.NewLine}{lesson.Str}";
                 else
-                    TuesdayLabel.Text = lesson.Str;
+                    TuesdayLabelEngland.Text = lesson.Str;
             }
             if (lesson.Room == "Англия" && lesson.Day == 3)
             {
-                if (WednesdayLabel.Text != null)
-                    WednesdayLabel.Text += $"{Environment.NewLine}{lesson.Str}";
+                if (WednesdayLabelEngland.Text != null)
+                    WednesdayLabelEngland.Text += $"{Environment.NewLine}{lesson.Str}";
                 else
-                    WednesdayLabel.Text = lesson.Str;
+                    WednesdayLabelEngland.Text = lesson.Str;
             }
+            if (lesson.Room == "Англия" && lesson.Day == 4)
+            {
+                if (ThursdayLabelEngland.Text != null)
+                    ThursdayLabelEngland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    ThursdayLabelEngland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Англия" && lesson.Day == 5)
+            {
+                if (FridayLabelEngland.Text != null)
+                    FridayLabelEngland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    FridayLabelEngland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Англия" && lesson.Day == 6)
+            {
+                if (SaturdayLabelEngland.Text != null)
+                    SaturdayLabelEngland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SaturdayLabelEngland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Англия" && lesson.Day == 7)
+            {
+                if (SundayLabelEngland.Text != null)
+                    SundayLabelEngland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SundayLabelEngland.Text = lesson.Str;
+            }
+            #endregion
+
+            #region Ireland
+            if (lesson.Room == "Ирландия" && lesson.Day == 1)
+            {
+                if (MondayLabelIreland.Text != null)
+                    MondayLabelIreland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    MondayLabelIreland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Ирландия" && lesson.Day == 2)
+            {
+                if (TuesdayLabelIreland.Text != null)
+                    TuesdayLabelIreland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    TuesdayLabelIreland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Ирландия" && lesson.Day == 3)
+            {
+                if (WednesdayLabelIreland.Text != null)
+                    WednesdayLabelIreland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    WednesdayLabelIreland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Ирландия" && lesson.Day == 4)
+            {
+                if (ThursdayLabelIreland.Text != null)
+                    ThursdayLabelIreland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    ThursdayLabelIreland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Ирландия" && lesson.Day == 5)
+            {
+                if (FridayLabelIreland.Text != null)
+                    FridayLabelIreland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    FridayLabelIreland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Ирландия" && lesson.Day == 6)
+            {
+                if (SaturdayLabelIreland.Text != null)
+                    SaturdayLabelIreland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SaturdayLabelIreland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Ирландия" && lesson.Day == 7)
+            {
+                if (SundayLabelIreland.Text != null)
+                    SundayLabelIreland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SundayLabelIreland.Text = lesson.Str;
+            }
+            #endregion
+
+            #region Scotland
+            if (lesson.Room == "Шотландия" && lesson.Day == 1)
+            {
+                if (MondayLabelScotland.Text != null)
+                    MondayLabelScotland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    MondayLabelScotland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Шотландия" && lesson.Day == 2)
+            {
+                if (TuesdayLabelScotland.Text != null)
+                    TuesdayLabelScotland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    TuesdayLabelScotland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Шотландия" && lesson.Day == 3)
+            {
+                if (WednesdayLabelScotland.Text != null)
+                    WednesdayLabelScotland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    WednesdayLabelScotland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Шотландия" && lesson.Day == 4)
+            {
+                if (ThursdayLabelScotland.Text != null)
+                    ThursdayLabelScotland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    ThursdayLabelScotland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Шотландия" && lesson.Day == 5)
+            {
+                if (FridayLabelScotland.Text != null)
+                    FridayLabelScotland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    FridayLabelScotland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Шотландия" && lesson.Day == 6)
+            {
+                if (SaturdayLabelScotland.Text != null)
+                    SaturdayLabelScotland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SaturdayLabelScotland.Text = lesson.Str;
+            }
+            if (lesson.Room == "Шотландия" && lesson.Day == 7)
+            {
+                if (SundayLabelScotland.Text != null)
+                    SundayLabelScotland.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SundayLabelScotland.Text = lesson.Str;
+            }
+            #endregion
+
+            #region Wales
+            if (lesson.Room == "Уэльс" && lesson.Day == 1)
+            {
+                if (MondayLabelWales.Text != null)
+                    MondayLabelWales.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    MondayLabelWales.Text = lesson.Str;
+            }
+            if (lesson.Room == "Уэльс" && lesson.Day == 2)
+            {
+                if (TuesdayLabelWales.Text != null)
+                    TuesdayLabelWales.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    TuesdayLabelWales.Text = lesson.Str;
+            }
+            if (lesson.Room == "Уэльс" && lesson.Day == 3)
+            {
+                if (WednesdayLabelWales.Text != null)
+                    WednesdayLabelWales.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    WednesdayLabelWales.Text = lesson.Str;
+            }
+            if (lesson.Room == "Уэльс" && lesson.Day == 4)
+            {
+                if (ThursdayLabelWales.Text != null)
+                    ThursdayLabelWales.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    ThursdayLabelWales.Text = lesson.Str;
+            }
+            if (lesson.Room == "Уэльс" && lesson.Day == 5)
+            {
+                if (FridayLabelWales.Text != null)
+                    FridayLabelWales.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    FridayLabelWales.Text = lesson.Str;
+            }
+            if (lesson.Room == "Уэльс" && lesson.Day == 6)
+            {
+                if (SaturdayLabelWales.Text != null)
+                    SaturdayLabelWales.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SaturdayLabelWales.Text = lesson.Str;
+            }
+            if (lesson.Room == "Уэльс" && lesson.Day == 7)
+            {
+                if (SundayLabelWales.Text != null)
+                    SundayLabelWales.Text += $"{Environment.NewLine}{lesson.Str}";
+                else
+                    SundayLabelWales.Text = lesson.Str;
+            }
+            #endregion
         }
     }
 
