@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="wave.ChangeScheduleDirector" 
+           HorizontalOptions="Center" 
+           VerticalOptions="Center"
+           CanBeDismissedByTappingOutsideOfPopup="False" 
+           Size="900, 600">
+
+    <StackLayout WidthRequest="900" BackgroundColor="LightGray">
+
+        <Button
+            FontSize="20"
+            Margin="0, 20, 20, 0"
+            VerticalOptions="Center"
+            HorizontalOptions="End"
+            BackgroundColor="DarkRed"
+            Text="Закрыть"
+            Clicked="ClosePopup"/>
+
+        <Label Text="emae eto chto" FontSize="20" Margin="20,0,0,0"/>
+        
+        <ScrollView>
+                <material:DataGrid ItemsSource="{Binding Items}" UseAutoColumns="True" Margin="20" />
+        </ScrollView>
+
+    </StackLayout>
+</mct:Popup>

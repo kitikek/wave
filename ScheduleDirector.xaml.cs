@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
@@ -6,7 +7,7 @@ namespace wave;
 
 public partial class ScheduleDirector : ContentPage
 {
-    private ObservableCollection<Lesson> LessonsList = new ObservableCollection<Lesson>();
+    public static ObservableCollection<Lesson> LessonsList = new ObservableCollection<Lesson>();
     public ScheduleDirector()
     {
         InitializeComponent();
@@ -33,6 +34,7 @@ public partial class ScheduleDirector : ContentPage
                 }
             }
         }
+        BindingContext = this;
         UpdateUIBasedOnConditions();
     }
     private void UpdateUIBasedOnConditions()
@@ -255,5 +257,9 @@ public partial class ScheduleDirector : ContentPage
         public int Day { get; set; }
         public string Room { get; set; }
         public string Str { get; set; }
+    }
+    public async void ChangeButtonClicked(object sender, EventArgs e)
+    {
+        this.ShowPopup(new ChangeScheduleDirector());
     }
 }
