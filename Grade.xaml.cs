@@ -24,7 +24,7 @@ public partial class Grade : ContentPage
         {
             con.Open();
 
-            string sql = "SELECT test.test_name, test.test_date, test_visit.test_visit_mark, test_visit.test_visit " +
+            string sql = "SELECT test.test_name, test.test_date, test_visit.test_visit_mark " +
                 "FROM test, test_visit " +
                 "WHERE test_visit.test_visit_student_id=1 AND test_visit.test_visit_test_id=test.test_id " +
                 "ORDER BY test.test_date DESC;";
@@ -34,7 +34,7 @@ public partial class Grade : ContentPage
             while (reader.Read())
             {
                 string formattedDate = reader.GetDateTime(1).ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
-                items.Add(new GradeItem { Name = reader.GetString(0) + $" ({reader.GetString(3)})", Date = formattedDate, Grade = reader.GetString(2) });
+                items.Add(new GradeItem { Name = reader.GetString(0), Date = formattedDate, Grade = reader.GetString(2) });
             }
         }
 
