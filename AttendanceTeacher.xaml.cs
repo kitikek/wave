@@ -90,6 +90,10 @@ namespace wave
                     }
                     //обновление информации на странице
                     BigLoad(sender, e);
+
+                    //установка значений списков для добавления учеников
+                    LessonPicker1.SelectedIndex = LessonIds.Count-1;
+                    StudentPicker.SelectedIndex = 0;
                 }
             };
 
