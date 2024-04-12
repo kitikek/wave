@@ -3,10 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="wave.UsersDirector"
              Title="UsersDirector">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Строка 1 +размер группы  +схема оплаты-->
+            <Entry x:Name="txtSize" Placeholder="Введите размер группы:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+            <Button x:Name="btnAddGroupSize" Grid.Row="0" Grid.Column="2" Text="Добавить размер" Margin="20" FontSize="Body"/>
+            <Entry x:Name="txtScheme" Placeholder="Введите схему оплаты:" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Margin="10"/>
+            <Button x:Name="btnAddScheme" Grid.Row="0" Grid.Column="6" Text="Добавить схему оплаты" Margin="20"/>
+            <!-- Строка 2 -размер группы  -схема оплаты -->
+            <Picker x:Name="pSize" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Title="Размер групп:" Margin="10" />
+            <Button x:Name="btnDelGroupSize" Grid.Row="1" Grid.Column="2" Text="Удалить размер" Margin="20"/>
+            <Picker x:Name="pScheme" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Title="Схема оплаты:" Margin="10" />
+            <Button x:Name="btnDelScheme" Grid.Row="1" Grid.Column="6" Text="Удалить схему оплаты" Margin="20"/>
+            <!-- Строка 3 добавить курс -->
+            <Entry x:Name="txtCourse" Placeholder="Введите название курса:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+            <Picker x:Name="pSize1" Grid.Row="2" Grid.Column="2" Title="Размер групп:" Margin="10" />
+            <Entry x:Name="txtHours" Placeholder="Кол-во часов:" Grid.Row="2" Grid.Column="3" Keyboard="Numeric" Margin="10"/>
+            <Entry x:Name="txtHoursCost" Placeholder="Стоимость часа:" Grid.Row="2" Grid.Column="4" Keyboard="Numeric" Margin="10"/>
+            <Picker x:Name="pScheme1" Grid.Row="2" Grid.Column="5" Title="Схема оплаты:" Margin="10" />
+            <Button x:Name="btnAddCourse" Grid.Row="2" Grid.Column="6" Text="Добавить курс" Margin="20"/>
+            <!-- Строка 4 добавить группу -->
+            <Entry x:Name="txtGroup" Placeholder="Введите название группы:" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+            <Picker x:Name="pTeacher" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Title="Учитель:" Margin="10" />
+            <Picker x:Name="pCourse" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Title="Курс:" Margin="10" />
+            <Button x:Name="btnAddGroup" Grid.Row="3" Grid.Column="6" Text="Добавить группу" Margin="20"/>
+            <!-- Строка 5 -курс  -группа -->
+            <Picker x:Name="pCourse1" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Title="Курс:" Margin="10" />
+            <Button x:Name="btnDelCourse" Grid.Row="4" Grid.Column="2" Text="Удалить курс" Margin="20"/>
+            <Picker x:Name="pGroup" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Title="Группа:" Margin="10" />
+            <Button x:Name="btnDelGroup" Grid.Row="4" Grid.Column="6" Text="Удалить группу" Margin="20"/>
+            <!-- Строка 6 фам тел тип  добавить пользователя-->
+            <Entry x:Name="txtSurname" Placeholder="Фамилия:" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+            <Entry x:Name="txtPhoneNumber" Placeholder="Телефон:" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
+            <Picker x:Name="pType" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Title="Тип пользователя:" Margin="10"/>
+            <Button x:Name="btnAddUser" Grid.Row="5" Grid.Column="6" Grid.RowSpan="3" Text="Добавить пользователя" Margin="20"/>
+            <!-- Строка 7 имя лог (др) -->
+            <Entry x:Name="txtName" Placeholder="Имя:" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+            <Entry x:Name="txtLogin" Placeholder="Логин:" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
+            <Entry x:Name="txtBirth" Placeholder="(только студентам) ДР в формате 01.04.2015" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="10"/>
+            <!-- Строка 8 отч пар (род)-->
+            <Entry x:Name="txtFatherName" Placeholder="Фамилия:" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+            <Entry x:Name="txtPassword" Placeholder="Пароль:" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
+            <Picker x:Name="pParent" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" Title="(только студентам) Родитель:" Margin="10"/>
+            <!-- Строка 9 -пользователь -->
+            <Picker x:Name="pUser" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Title="Пользователь:" Margin="10"/>
+            <Button x:Name="btnDelUser" Grid.Row="8" Grid.Column="6" Text="Удалить пользователя" Margin="20"/>
+            <!-- Строка 10 +ученик в группу  -ученик из группы-->
+            <Picker x:Name="pGroup1" Grid.Row="9" Grid.Column="0" Title="Группа:" Margin="10"/>
+            <Picker x:Name="pStudent" Grid.Row="9" Grid.Column="1" Title="Студент:" Margin="10"/>
+            <Button x:Name="btnAddStudGr" Grid.Row="9" Grid.Column="2" Text="Добавить в группу" Margin="20"/>
+            <Picker x:Name="pGroup2" Grid.Row="9" Grid.Column="4" Title="Группа:" Margin="10"/>
+            <Picker x:Name="pStudent1" Grid.Row="9" Grid.Column="5" Title="Студент:" Margin="10"/>
+            <Button x:Name="btnDelStudGr" Grid.Row="9" Grid.Column="6" Text="Удалить из группы" Margin="20"/>
+        </Grid>
+    </ScrollView>
 </ContentPage>

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="wave.AttendanceTeacher"
              Title="AttendanceTeacher">
-    <StackLayout>
-        <Grid Margin="10">
+    <StackLayout Orientation="Vertical">
+        <Grid x:Name="First" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -36,9 +36,31 @@
             <Button x:Name="UpdateButton" Grid.Column="4" Grid.Row="2" Text="Update" Margin="20,25,20,5"/>
         </Grid>
 
-        <ScrollView Orientation="Both">
-            <Grid x:Name="AttendanceGrid" Margin="10" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" RowSpacing="5" ColumnSpacing="5" Clip="False">
+        <ScrollView Orientation="Vertical">
+            <Grid x:Name="outerGrid" HeightRequest="1000">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid x:Name="StudentsGrid" Margin="10" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" RowSpacing="5" ColumnSpacing="5">
+                </Grid>
+                <ScrollView Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                    <Grid x:Name="AttendanceGrid" Margin="10" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" RowSpacing="5" ColumnSpacing="5" WidthRequest="1000">
+                    </Grid>
+                </ScrollView>
             </Grid>
         </ScrollView>
+        
+        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+            <Grid x:Name="StudentsGrid" Margin="10" HorizontalOptions="Start" VerticalOptions="Start" RowSpacing="5" ColumnSpacing="5">
+            </Grid>
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
+                <Grid x:Name="AttendanceGrid" Margin="10" HorizontalOptions="Start" VerticalOptions="Start" RowSpacing="5" ColumnSpacing="5">
+                </Grid>
+            </ScrollView>
+        </StackLayout>-->
     </StackLayout>
 </ContentPage>
