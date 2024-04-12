@@ -37,18 +37,20 @@
         </Grid>
 
         <ScrollView Orientation="Vertical">
-            <Grid x:Name="outerGrid" HeightRequest="1000">
+            <Grid x:Name="outerGrid">
+                <!--HeightRequest="11000" WidthRequest="11000" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid x:Name="StudentsGrid" Margin="10" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" RowSpacing="5" ColumnSpacing="5">
                 </Grid>
                 <ScrollView Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                    <Grid x:Name="AttendanceGrid" Margin="10" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" RowSpacing="5" ColumnSpacing="5" WidthRequest="1000">
+                    <Grid x:Name="AttendanceGrid" Margin="10" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" RowSpacing="5" ColumnSpacing="5">
+                        <!--WidthRequest="11000" HeightRequest="11000"-->
                     </Grid>
                 </ScrollView>
             </Grid>
