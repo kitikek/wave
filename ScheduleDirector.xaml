@@ -4,77 +4,133 @@
              x:Class="wave.ScheduleDirector"
              Title="ScheduleDirector">
 
-    <Frame BackgroundColor="WhiteSmoke" HasShadow="False" BorderColor="DeepPink"  CornerRadius="5" Margin="20">
-        <Grid RowSpacing="0" ColumnSpacing="0" Margin="20" BackgroundColor="WhiteSmoke">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <StackLayout>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <!-- Row for column labels -->
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Frame BackgroundColor="WhiteSmoke" HasShadow="False" BorderColor="DeepPink"  CornerRadius="5" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid RowSpacing="-10" ColumnSpacing="0" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-            <!-- Column labels -->        
-            <Label Text="Понедельник" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Margin="10"/>
-            <Label Text="Вторник" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Margin="10" />
-            <Label Text="Среда" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" Margin="10" />
-            <Label Text="Четверг" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" Margin="10" />
-            <Label Text="Пятница" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" Margin="10"/>
-            <Label Text="Суббота" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" Margin="10"/>
-            <Label Text="Воскресенье" Grid.Row="0" Grid.Column="7" HorizontalOptions="Center" Margin="10"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Row labels -->
-            <Label Text="England" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"  Margin="10"/>
-            <Label Text="Ireland" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label Text="Scotland" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label Text="Wales" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <!-- Row for column labels -->
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <!-- Lessons -->
-            <Label x:Name="MondayLabelEngland" Text="" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" />
-            <Label x:Name="TuesdayLabelEngland" Text="" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="WednesdayLabelEngland" Text="" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="ThursdayLabelEngland" Text="" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="FridayLabelEngland" Text="" Grid.Row="1" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SaturdayLabelEngland" Text="" Grid.Row="1" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SundayLabelEngland" Text="" Grid.Row="1" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
+                <!-- Column labels -->
 
-            <Label x:Name="MondayLabelIreland" Text="" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="TuesdayLabelIreland" Text="" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="WednesdayLabelIreland" Text="" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="ThursdayLabelIreland" Text="" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="FridayLabelIreland" Text="" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SaturdayLabelIreland" Text="" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SundayLabelIreland" Text="" Grid.Row="2" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-            <Label x:Name="MondayLabelScotland" Text="" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="TuesdayLabelScotland" Text="" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="WednesdayLabelScotland" Text="" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="ThursdayLabelScotland" Text="" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="FridayLabelScotland" Text="" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SaturdayLabelScotland" Text="" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SundayLabelScotland" Text="" Grid.Row="3" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
+                    <Button
+                        x:Name="ChangeButton"
+                        FontSize="12"
+                        HorizontalOptions="Start"
+                        Text="Изменить"
+                        Clicked="ChangeButtonClicked"
+                        MaximumWidthRequest="300" MinimumWidthRequest="110"
+                        MinimumHeightRequest="10" MaximumHeightRequest="30"
+                        Grid.Row="0" Grid.Column="0"/>
 
-            <Label x:Name="MondayLabelWales" Text="" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="TuesdayLabelWales" Text="" Grid.Row="4" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="WednesdayLabelWales" Text="" Grid.Row="4" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="ThursdayLabelWales" Text="" Grid.Row="4" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="FridayLabelWales" Text="" Grid.Row="4" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SaturdayLabelWales" Text="" Grid.Row="4" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
-            <Label x:Name="SundayLabelWales" Text="" Grid.Row="4" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
+                    <Button
+                        x:Name="AddButton"
+                        FontSize="12"
+                        Margin="0, 5, 0, 0"
+                        HorizontalOptions="Start"
+                        Text="Добавить"
+                        Clicked="AddButtonClicked"
+                        MaximumWidthRequest="300" MinimumWidthRequest="110"
+                        MinimumHeightRequest="10" MaximumHeightRequest="30"
+                        Grid.Row="1" Grid.Column="0"/>
+                    <Button
+                        x:Name="DeleteButton"
+                        FontSize="12"
+                        Margin="0, 5, 0, 0"
+                        HorizontalOptions="Start"
+                        Text="Удалить"
+                        Clicked="DeleteButtonClicked"
+                        MaximumWidthRequest="300" MinimumWidthRequest="110"
+                        MinimumHeightRequest="10" MaximumHeightRequest="30"
+                        Grid.Row="2" Grid.Column="0"/>
+                    <Button
+                        x:Name="ReloadButton"
+                        FontSize="12"
+                        Margin="0, 5, 0, 0"
+                        HorizontalOptions="Start"
+                        Text="Обновить"
+                        Clicked="ReloadButtonClicked"
+                        MaximumWidthRequest="300" MinimumWidthRequest="110"
+                        MinimumHeightRequest="10" MaximumHeightRequest="30"
+                        Grid.Row="3" Grid.Column="0"/>
 
-        </Grid>
-    </Frame>
+                </Grid>
+                
+                <Label Text="Понедельник" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" FontSize="20"/>
+                <Label Text="Вторник" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Margin="10" VerticalOptions="Center" FontSize="20"/>
+                <Label Text="Среда" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" Margin="10" VerticalOptions="Center" FontSize="20"/>
+                <Label Text="Четверг" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" Margin="10" VerticalOptions="Center" FontSize="20"/>
+                <Label Text="Пятница" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" Margin="10" VerticalOptions="Center" FontSize="20"/>
+                <Label Text="Суббота" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" Margin="10" VerticalOptions="Center" FontSize="20"/>
+                <Label Text="Воскресенье" Grid.Row="0" Grid.Column="7" HorizontalOptions="Center" Margin="10" VerticalOptions="Center" FontSize="20"/>
+
+                <!-- Row labels -->
+                <Label Text="England" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"  Margin="10" FontSize="20"/>
+                <Label Text="Ireland" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" FontSize="20" />
+                <Label Text="Scotland" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" FontSize="20" />
+                <Label Text="Wales" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" FontSize="20"/>
+
+                <!-- Lessons -->
+                <Label x:Name="MondayLabelEngland" Text="" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGrey" HeightRequest="160" WidthRequest="190" />
+                <Label x:Name="TuesdayLabelEngland" Text="" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGrey" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="WednesdayLabelEngland" Text="" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGrey" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="ThursdayLabelEngland" Text="" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGrey" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="FridayLabelEngland" Text="" Grid.Row="1" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGrey" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SaturdayLabelEngland" Text="" Grid.Row="1" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGrey" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SundayLabelEngland" Text="" Grid.Row="1" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGrey" HeightRequest="160" WidthRequest="190"/>
+
+                <Label x:Name="MondayLabelIreland" Text="" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGreen" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="TuesdayLabelIreland" Text="" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGreen" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="WednesdayLabelIreland" Text="" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGreen" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="ThursdayLabelIreland" Text="" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGreen" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="FridayLabelIreland" Text="" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGreen" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SaturdayLabelIreland" Text="" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGreen" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SundayLabelIreland" Text="" Grid.Row="2" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightGreen" HeightRequest="160" WidthRequest="190"/>
+
+                <Label x:Name="MondayLabelScotland" Text="" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightBlue" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="TuesdayLabelScotland" Text="" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightBlue" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="WednesdayLabelScotland" Text="" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightBlue" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="ThursdayLabelScotland" Text="" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightBlue" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="FridayLabelScotland" Text="" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightBlue" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SaturdayLabelScotland" Text="" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightBlue" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SundayLabelScotland" Text="" Grid.Row="3" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightBlue" HeightRequest="160" WidthRequest="190"/>
+
+                <Label x:Name="MondayLabelWales" Text="" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightSalmon" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="TuesdayLabelWales" Text="" Grid.Row="4" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightSalmon" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="WednesdayLabelWales" Text="" Grid.Row="4" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightSalmon" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="ThursdayLabelWales" Text="" Grid.Row="4" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightSalmon" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="FridayLabelWales" Text="" Grid.Row="4" Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightSalmon" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SaturdayLabelWales" Text="" Grid.Row="4" Grid.Column="6" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightSalmon" HeightRequest="160" WidthRequest="190"/>
+                <Label x:Name="SundayLabelWales" Text="" Grid.Row="4" Grid.Column="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BackgroundColor="LightSalmon" HeightRequest="160" WidthRequest="190"/>
+
+            </Grid>
+        </Frame>
+    </StackLayout>
 
 </ContentPage>

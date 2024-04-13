@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="wave.ChangeScheduleDirector" 
+           HorizontalOptions="Center" 
+           VerticalOptions="Center"
+           Size="720, 600">
+
+    <ScrollView WidthRequest="900" BackgroundColor="LightGray">
+        <StackLayout>
+            <Label Text="Введите данные урока, который хотите изменить:" VerticalOptions="Center" HorizontalOptions="Start" Margin="10"/>
+            <HorizontalStackLayout Margin="20, 0, 20, 0">
+                <Entry x:Name="EntryId" Placeholder="Id" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="LightYellow" MaximumWidthRequest="30"/>
+                <Entry x:Name="EntryDay" Placeholder="День" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="LightYellow" MinimumWidthRequest="120"/>
+                <Entry x:Name="EntryRoom" Placeholder="Кабинет" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="LightYellow" MinimumWidthRequest="100"/>
+                <Entry x:Name="EntryTimeStart" Placeholder="Начало" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="LightYellow" MinimumWidthRequest="60"/>
+                <Entry x:Name="EntryTimeEnd" Placeholder="Конец" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="LightYellow" MinimumWidthRequest="60"/>
+                <Entry x:Name="EntryGroup" Placeholder="Группа" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="LightYellow" MinimumWidthRequest="100"/>
+               
+                <Button
+                    FontSize="15"
+                    Margin="15"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Text="Изменить"
+                    Clicked="ChangeButtonClicked"/>
+            </HorizontalStackLayout>
+
+            <material:DataGrid ItemsSource="{Binding Items}" UseAutoColumns="True" HorizontalOptions="Center" Margin="20"/>
+
+        </StackLayout>
+    </ScrollView>
+
+</mct:Popup>

@@ -17,6 +17,21 @@ namespace wave
         List<int> LessonIds = new List<int>();
         List<int> StudentIds = new List<int>();
 
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    outerGrid.Loaded += OuterGrid_Loaded;
+        //    this.SizeChanged += Form_SizeChanged;
+        //}
+
+        //private void Form_SizeChanged(object sender, EventArgs e)
+        //{
+        //}
+
+        //private void OuterGrid_Loaded(object sender, EventArgs e)
+        //{
+        //}
+
         public AttendanceTeacher()
         {
             InitializeComponent();
@@ -37,6 +52,9 @@ namespace wave
                 if (!string.IsNullOrEmpty(GroupPicker.SelectedItem?.ToString()))
                 {
                     //очищение старой таблицы посещаемости дл€ вывода новой
+                    StudentsGrid.Children.Clear();
+                    StudentsGrid.RowDefinitions.Clear();
+                    StudentsGrid.ColumnDefinitions.Clear();
                     AttendanceGrid.Children.Clear();
                     AttendanceGrid.RowDefinitions.Clear();
                     AttendanceGrid.ColumnDefinitions.Clear();
@@ -48,7 +66,8 @@ namespace wave
                     ScheduleIds = FillPickerAndGetIds(ref SchedulePicker, "SELECT CONCAT(LEFT(day.day_name, 3), \" \", lesson.lesson_start, \"-\", lesson.lesson_end, \" (\", room.room_name, \")\"), lesson.lesson_id FROM groups JOIN lesson ON groups.group_id=lesson.lesson_group_id AND groups.group_name=@GroupName JOIN day ON day.day_id=lesson.lesson_day_id JOIN room ON room.room_id=lesson.lesson_room_id;");
                     LessonIds = FillPickerAndGetIds(ref LessonPicker, "SELECT CONCAT(DATE_FORMAT(lesson_exact.lesson_exact_data, \"%d.%m.%Y \"), LEFT(day.day_name, 3), \" \", lesson.lesson_start, \"-\", lesson.lesson_end, \" (\", room.room_name, \")\"), lesson_exact.lesson_exact_id FROM groups JOIN lesson ON groups.group_id=lesson.lesson_group_id AND groups.group_name=@GroupName JOIN day ON day.day_id=lesson.lesson_day_id JOIN room ON room.room_id=lesson.lesson_room_id JOIN lesson_exact ON lesson_exact.lesson_exact_lesson_id=lesson.lesson_id ORDER BY lesson_exact.lesson_exact_data ASC;");
                     StudentIds = FillPickerAndGetIds(ref StudentPicker, "SELECT CONCAT(users.user_surname, ' ', users.user_name), student.student_id FROM students_groups JOIN groups ON students_groups.group_id=groups.group_id AND groups.group_name=@GroupName JOIN student ON student.student_id=students_groups.student_id JOIN users ON users.user_id=student.student_user_id GROUP BY users.user_surname ASC;");
-                    
+                    LessonPicker1.ItemsSource = LessonPicker.ItemsSource;
+
                     //загрузка таблицы посещаемости
                     Load(groupName);
                 }
@@ -239,7 +258,7 @@ namespace wave
                 };
                 Grid.SetRow(studentLabel1, 0);
                 Grid.SetColumn(studentLabel1, 0);
-                AttendanceGrid.Children.Add(studentLabel1);
+                StudentsGrid.Children.Add(studentLabel1);
 
                 //заполнение студентов
                 for (int i = 0; i < rowCount; i++)
@@ -252,7 +271,7 @@ namespace wave
                     };
                     Grid.SetRow(studentLabel, i + 1);
                     Grid.SetColumn(studentLabel, 0);
-                    AttendanceGrid.Children.Add(studentLabel);
+                    StudentsGrid.Children.Add(studentLabel);
                 }
 
                 //заполнение дат
@@ -269,13 +288,12 @@ namespace wave
                         //Rotation = 270
                     };
                     Grid.SetRow(dateLabel, 0);
-                    Grid.SetColumn(dateLabel, j + 1);
+                    Grid.SetColumn(dateLabel, j);
                     AttendanceGrid.Children.Add(dateLabel);
                 }
 
                 //уcтановка свойств столбцов
-                AttendanceGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-                AttendanceGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                StudentsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
                 for (int j = 0; j < columnCount + 1; j++)
                 {
                     AttendanceGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -283,6 +301,7 @@ namespace wave
                 for (int i = 0; i < rowCount + 1; i++)
                 {
                     AttendanceGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                    StudentsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
                 }
 
                 //ѕолучение и заполнение посещаемости
@@ -300,7 +319,7 @@ namespace wave
                                 VerticalOptions = LayoutOptions.Center
                             };
                             Grid.SetRow(attendanceLabel, StudentIds.IndexOf(reader.GetInt32(1)) + 1);
-                            Grid.SetColumn(attendanceLabel, LessonIds.IndexOf(reader.GetInt32(2)) + 1);
+                            Grid.SetColumn(attendanceLabel, LessonIds.IndexOf(reader.GetInt32(2)));
                             AttendanceGrid.Children.Add(attendanceLabel);
                         }
                     }

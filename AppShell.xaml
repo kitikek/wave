@@ -138,5 +138,12 @@
             ContentTemplate="{DataTemplate local:ScheduleDirector}"
             Route="ScheduleDirector" 
             Icon="schedule.png"/>
+        
+        <ShellContent
+            x:Name="UsersDirectorContent"
+            Title="UsersDirector"
+            ContentTemplate="{DataTemplate local:UsersDirector}"
+            Route="UsersDirector" 
+            Icon="authorization.png"/>
     </FlyoutItem>  
 </Shell>
