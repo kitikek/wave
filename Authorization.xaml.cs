@@ -11,12 +11,14 @@ public partial class Authorization : ContentPage
     public static string Login { get; set; }
     public static string Password { get; set; }
     private bool isPasswordVisible = false;
+    private Color originalEntryColor;
     public Authorization()
 	{
 		InitializeComponent();
         LoginEntry.TextChanged += HandleTextChanged;
         PasswordEntry.TextChanged += HandleTextChanged;
         LoginButton.IsEnabled = false;
+        originalEntryColor = LoginEntry.BackgroundColor;
     }
     public bool ValidateUser(string login, string password)
     {
@@ -80,6 +82,7 @@ public partial class Authorization : ContentPage
     {
         if (ValidateUser(LoginEntry.Text, PasswordEntry.Text))
         {
+            // В случае успешной аутентификации, переход к соответствующему экрану
             Login = LoginEntry.Text;
             Password = PasswordEntry.Text;
 
@@ -102,6 +105,10 @@ public partial class Authorization : ContentPage
             {
                 await Shell.Current.GoToAsync("//Student");
             }
+
+            ErrorMessageLabel.IsVisible = false;
+            LoginEntry.BackgroundColor = originalEntryColor;
+            PasswordEntry.BackgroundColor = originalEntryColor;
         }
         else
         {
