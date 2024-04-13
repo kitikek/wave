@@ -84,6 +84,13 @@
             ContentTemplate="{DataTemplate local:Payment}"
             Route="Payment" 
             Icon="payment.png"/>
+
+        <ShellContent
+            x:Name="DocumentsContent"
+            Title="Documents"
+            ContentTemplate="{DataTemplate local:DocumentsParent}"
+            Route="DocumentsParent" 
+            Icon="documents.png"/>
     </FlyoutItem>
 
     <FlyoutItem x:Name="Teacher" FlyoutDisplayOptions="AsMultipleItems" Route="Teacher">

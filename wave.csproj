@@ -88,6 +88,9 @@
 	  <MauiXaml Update="DeleteScheduleDirector.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="DocumentsParent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Grade.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
