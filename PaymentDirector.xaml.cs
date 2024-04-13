@@ -336,6 +336,8 @@ public partial class PaymentDirector : ContentPage
 
     private void AddPaymentDetailsToStackLayout(int paymentSum, string paymentDetails, string paymentDate)
     {
+        DateTime parsedPaymentDate = DateTime.Parse(paymentDate);
+        string formattedPaymentDate = parsedPaymentDate.ToString("dd.MM.yyyy");
         Frame paymentFrame = new Frame
         {
             Content = new StackLayout
@@ -344,7 +346,7 @@ public partial class PaymentDirector : ContentPage
                 {
                     new Label { Text = $"Сумма платежа: {paymentSum}" },
                     new Label { Text = $"Номер платежа: {paymentDetails}" },
-                    new Label { Text = $"Дата: {paymentDate}" }
+                    new Label { Text = $"Дата: {formattedPaymentDate}" }
                 }
             },
             Padding = new Thickness(10),

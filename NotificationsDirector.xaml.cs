@@ -20,7 +20,7 @@ public partial class NotificationsDirector : ContentPage
 
         Datepicker = new DatePicker
         {
-            Format = "D",
+            Format = "yyyy-mm-dd",
             MinimumDate = DateTime.Now
         };
 
