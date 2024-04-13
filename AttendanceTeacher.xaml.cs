@@ -41,8 +41,25 @@ namespace wave
             ValuePicker.SelectedIndex = 0;
 
             //заполнение списка групп
-            FillPicker(ref GroupPicker, "SELECT group_name FROM groups ORDER BY group_name ASC;");
+            using (var con = new MySqlConnection(ConnString.connString))
+            {
+                con.Open();
 
+                var items = new List<string>();
+                using (var cmd = new MySqlCommand("SELECT group_name FROM groups JOIN teacher ON group_teacher_id=teacher_id JOIN users ON user_id=teacher_user_id AND user_login=@log AND user_password=@pas ORDER BY group_name ASC;", con))
+                {
+                    cmd.Parameters.AddWithValue("@log", Authorization.Login);
+                    cmd.Parameters.AddWithValue("@pas", Authorization.Password);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            items.Add(reader.GetString(0));
+                        }
+                    }
+                    GroupPicker.ItemsSource = items;
+                }
+            }
 
             //при изменении группы начинается большая загрузка всех всплывающих списков и вывод информации о посещаемости
             GroupPicker.SelectedIndexChanged += BigLoad;
@@ -177,31 +194,6 @@ namespace wave
             };
         }
 
-
-        //заполнение всплывающего списка
-        void FillPicker(ref Picker p, string sql)
-        {
-            p.ItemsSource = FillList(sql); 
-        }
-
-        List<string> FillList(string sql)
-        {
-            using (var con = new MySqlConnection(ConnString.connString))
-            {
-                con.Open();
-
-                var items = new List<string>();
-                using (var cmd = new MySqlCommand(sql, con))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        items.Add(reader.GetString(0));
-                    }
-                }
-                return items;
-            }
-        }
 
         //заполнение всплывающего списка и списка айдишников
         List<int> FillPickerAndGetIds(ref Picker p, string sql)
