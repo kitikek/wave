@@ -121,7 +121,15 @@ public partial class Payment : ContentPage
                         AddPaymentDetailsToStackLayout(paymentSum, paymentDetails, paymentDate);
                     }
 
-                    int remainingBalance = totalPayments > 0 ? fullPrice - totalPayments : fullPrice;
+                    int remainingBalance;
+                    if (totalPayments > 0)
+                    {
+                        remainingBalance = fullPrice - totalPayments;
+                    }
+                    else
+                    {
+                        remainingBalance = fullPrice;
+                    }
 
                     Label remainingBalanceLabel = new Label
                     {

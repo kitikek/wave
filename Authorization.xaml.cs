@@ -9,6 +9,7 @@ namespace wave;
 public partial class Authorization : ContentPage
 {
     public static string Login { get; set; }
+    public static string Password { get; set; } 
     public Authorization()
 	{
 		InitializeComponent();
@@ -38,7 +39,8 @@ public partial class Authorization : ContentPage
     private async void LoginButtonClicked(object sender, EventArgs e)
     {
         // Navigate to the Home flyout item after button click
-        Login = LoginEntry.Text;        
+        Login = LoginEntry.Text;  
+        Password = PasswordEntry.Text;  
         if (WhoAreYou.isDirectorSelected)
         {
             await Shell.Current.GoToAsync("//Director");
