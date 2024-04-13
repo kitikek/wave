@@ -62,7 +62,7 @@
             <!-- Строка 7 имя лог (др) -->
             <Entry  x:Name="txtName" Placeholder="Имя:" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
             <Entry  x:Name="txtLogin" Placeholder="Логин:" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
-            <Entry  x:Name="txtBirth" Placeholder="(только студентам) ДР в формате 01.04.2015" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="10" PlaceholderColor="Green"/>
+            <DatePicker x:Name="Dat" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Center" BackgroundColor="Green"/>
             <!-- Строка 8 отч пар (род)-->
             <Entry  x:Name="txtFatherName" Placeholder="Фамилия:" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
             <Entry  x:Name="txtPassword" Placeholder="Пароль:" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
