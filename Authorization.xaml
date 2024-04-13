@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="wave.Authorization"
              Title="Authorization">
-    
+
     <VerticalStackLayout Margin="60">
         <Label 
             FontSize="40"
@@ -20,7 +20,7 @@
             FontSize="40"
             Text="Пароль"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />   
+            HorizontalOptions="Center" />
         <Entry
             x:Name="PasswordEntry"
             CharacterSpacing="1"
@@ -28,6 +28,13 @@
             Placeholder="Введите пароль"
             ClearButtonVisibility="WhileEditing"
             MaximumWidthRequest="400"/>
+        <Label 
+            x:Name="ErrorMessageLabel"
+             FontSize="16"
+             TextColor="#FF8888" 
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+              IsVisible="False" />
         <Button
             x:Name="LoginButton"
             FontSize="20"
