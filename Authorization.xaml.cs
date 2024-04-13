@@ -78,11 +78,25 @@ public partial class Authorization : ContentPage
             LoginButton.IsEnabled = false;
         }
     }
+    private void PasswordVisibilityButton_Clicked(object sender, EventArgs e)
+    {
+        PasswordEntry.IsPassword = !PasswordEntry.IsPassword;
+
+        if (PasswordEntry.IsPassword)
+        {
+            PasswordVisibilityButton.Source = "hidepassword.png";
+            PasswordVisibilityLabel.Text = "Показать пароль";
+        }
+        else
+        {
+            PasswordVisibilityButton.Source = "showpassword.png";
+            PasswordVisibilityLabel.Text = "Скрыть пароль";
+        }
+    }
     private async void LoginButtonClicked(object sender, EventArgs e)
     {
         if (ValidateUser(LoginEntry.Text, PasswordEntry.Text))
         {
-            // В случае успешной аутентификации, переход к соответствующему экрану
             Login = LoginEntry.Text;
             Password = PasswordEntry.Text;
 
