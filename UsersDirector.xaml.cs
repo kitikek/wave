@@ -44,7 +44,7 @@ namespace wave
                 pCourse1.ItemsSource = pCourse.ItemsSource;
                 GroupIds = FillPickerAndGetIds(ref pGroup, "SELECT CONCAT(group_name, \" (\", course_name, \" (\", size_value, \" чел) \", scheme_value, \")\"), group_id FROM groups JOIN course ON group_course_id=course_id JOIN size ON course_size_id=size_id JOIN scheme ON course_scheme_id=scheme_id ORDER BY group_name;");
                 ParentIds = FillPickerAndGetIds(ref pParent, "SELECT CONCAT(user_surname, \" \", user_name, \" \", user_patronymic), parent_id FROM parent JOIN users ON parent_user_id=user_id;");
-                UserIds = FillPickerAndGetIds(ref pUser, "SELECT CONCAT(users.user_surname, ' ', users.user_name, ' ', users.user_patronymic, ' (', usertype_name, ')'), user_id FROM users JOIN usertype ON usertype_id=user_type_id ORDER BY usertype_id, user_surname;");
+                UserIds = FillPickerAndGetIds(ref pUser, "SELECT CONCAT(users.user_surname, ' ', users.user_name, ' ', users.user_patronymic, ' (', usertype_name, ') (логин: ', user_login, ', пароль: ', user_password, ', телефон: ', user_phone), user_id FROM users JOIN usertype ON usertype_id=user_type_id ORDER BY usertype_id, user_surname;");
                 FillPicker(ref pGroup1, "SELECT group_name FROM groups ORDER BY group_name;");
                 pGroup2.ItemsSource = pGroup1.ItemsSource;
                 pStudent.ItemsSource = new List<string>();
