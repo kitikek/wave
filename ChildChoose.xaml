@@ -10,12 +10,6 @@
             FontSize="40"
             VerticalOptions="Center" 
             HorizontalOptions="Center"/>
-        <Button
-            x:Name="ChildChooseButton"
-            FontSize="30"
-            Margin="20"  
-            Text=""
-            Clicked="YourChildren"/>
-        
+
     </VerticalStackLayout>
 </ContentPage>

@@ -109,7 +109,7 @@ public partial class Authorization : ContentPage
             }
             else if (WhoAreYou.isParentSelected)
             {
-                await Shell.Current.GoToAsync("//Parent");
+                await Shell.Current.GoToAsync("//ChildChoose");
             }
             else if (WhoAreYou.isTeacherSelected)
             {
