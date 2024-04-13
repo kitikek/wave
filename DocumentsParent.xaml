@@ -5,7 +5,7 @@
              Title="DocumentsParent">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Нажмите на кнопку, чтобы открыть папку с документами"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

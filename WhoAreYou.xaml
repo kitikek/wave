@@ -14,6 +14,8 @@
             FontSize="30"
             Margin="20"  
             Text="Я учитель"
+            HeightRequest="60" 
+            Padding="-20"
             Clicked="TeacherButtonClicked"
             MaximumWidthRequest="400"
             MinimumHeightRequest="60"/>
@@ -22,6 +24,8 @@
             FontSize="30"
             Margin="20"  
             Text="Я родитель"
+            HeightRequest="60"
+            Padding="-20"
             Clicked="ParentButtonClicked"
             MaximumWidthRequest="400"
             MinimumHeightRequest="60"/>
@@ -30,6 +34,8 @@
             FontSize="30"
             Margin="20"  
             Text="Я ученик"
+            HeightRequest="60"
+            Padding="-20"
             Clicked="StudentButtonClicked"
             MaximumWidthRequest="400"
             MinimumHeightRequest="60"/>
@@ -38,6 +44,8 @@
             FontSize="30"
             Margin="20"  
             Text="Я руководитель"
+            HeightRequest="60"
+            Padding="-20"
             Clicked="DirectorButtonClicked"
             MaximumWidthRequest="400"
             MinimumHeightRequest="60"/>
