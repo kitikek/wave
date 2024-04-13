@@ -11,31 +11,73 @@ public partial class ScheduleDirector : ContentPage
     public ScheduleDirector()
     {
         InitializeComponent();
+        LoadSchedule();
+    }
+    private void LoadSchedule()
+    {
+        LessonsList.Clear();
+
+        ClearLabelsText();
 
         var cs = ConnString.connString;
 
         using (var con = new MySqlConnection(cs))
         {
             con.Open();
-            var cmd = new MySqlCommand("SELECT l.lesson_id, l.lesson_day_id, CONCAT(l.lesson_start, ' - ', l.lesson_end) AS lessonTime, g.group_name AS groupName, r.room_name AS roomName, CONCAT(LEFT(u.user_name, 1), '.', LEFT(u.user_patronymic, 1), '.') AS teacherInitials FROM lesson l JOIN groups g ON l.lesson_group_id = g.group_id JOIN room r ON l.lesson_room_id = r.room_id JOIN teacher t ON g.group_teacher_id = t.teacher_id JOIN users u ON t.teacher_user_id = u.user_id;", con);
-
+            var cmd = new MySqlCommand("SELECT l.lesson_id, l.lesson_day_id, d.day_name AS lesson_day_name, CONCAT(l.lesson_start, ' - ', l.lesson_end) AS lessonTime, g.group_name AS groupName, r.room_name AS roomName, CONCAT(LEFT(u.user_name, 1), '.', LEFT(u.user_patronymic, 1), '.') AS teacherIni, CONCAT(u.user_surname, ' ', LEFT(u.user_name, 1), '.', LEFT(u.user_patronymic, 1), '.') AS teacher FROM lesson l JOIN day d ON l.lesson_day_id = d.day_id JOIN groups g ON l.lesson_group_id = g.group_id JOIN room r ON l.lesson_room_id = r.room_id JOIN teacher t ON g.group_teacher_id = t.teacher_id JOIN users u ON t.teacher_user_id = u.user_id ORDER BY d.day_id ASC, r.room_id ASC, l.lesson_start ASC;", con);
             using (var dr = cmd.ExecuteReader())
             {
                 while (dr.Read())
                 {
                     var lessonId = (int)dr["lesson_id"];
-                    var day = (int)dr["lesson_day_id"];
+                    var dayId = (int)dr["lesson_day_id"];
+                    var day = dr["lesson_day_name"].ToString();
                     var room = dr["roomName"].ToString();
                     var lessonTime = dr["lessonTime"].ToString();
                     var groupName = dr["groupName"].ToString();
-                    var teacher = dr["teacherInitials"].ToString(); 
+                    var teacher = dr["teacher"].ToString();
+                    var teacherIni = dr["teacherIni"].ToString();
 
-                    LessonsList.Add(new Lesson() { LessonName = lessonId, Day = day, Room = room, Str = $"{lessonTime}  {groupName}  {teacher}" });
+                    LessonsList.Add(new Lesson() { LessonName = lessonId, Day = dayId, DayName = day, Room = room, Group = groupName, Teacher = teacher, Time = lessonTime, Str = $"{lessonTime}  {groupName}  {teacherIni}" });
                 }
             }
         }
-        BindingContext = this;
+
         UpdateUIBasedOnConditions();
+    }
+    private void ClearLabelsText()
+    {
+        MondayLabelEngland.Text = string.Empty;
+        TuesdayLabelEngland.Text = string.Empty;
+        WednesdayLabelEngland.Text = string.Empty;
+        ThursdayLabelEngland.Text = string.Empty;
+        FridayLabelEngland.Text = string.Empty;
+        SaturdayLabelEngland.Text = string.Empty;
+        SundayLabelEngland.Text = string.Empty;
+
+        MondayLabelIreland.Text = string.Empty;
+        TuesdayLabelIreland.Text = string.Empty;
+        WednesdayLabelIreland.Text = string.Empty;
+        ThursdayLabelIreland.Text = string.Empty;
+        FridayLabelIreland.Text = string.Empty;
+        SaturdayLabelIreland.Text = string.Empty;
+        SundayLabelIreland.Text = string.Empty;
+
+        MondayLabelScotland.Text = string.Empty;
+        TuesdayLabelScotland.Text = string.Empty;
+        WednesdayLabelScotland.Text = string.Empty;
+        ThursdayLabelScotland.Text = string.Empty;
+        FridayLabelScotland.Text = string.Empty;
+        SaturdayLabelScotland.Text = string.Empty;
+        SundayLabelScotland.Text = string.Empty;
+
+        MondayLabelWales.Text = string.Empty;
+        TuesdayLabelWales.Text = string.Empty;
+        WednesdayLabelWales.Text = string.Empty;
+        ThursdayLabelWales.Text = string.Empty;
+        FridayLabelWales.Text = string.Empty;
+        SaturdayLabelWales.Text = string.Empty;
+        SundayLabelWales.Text = string.Empty;
     }
     private void UpdateUIBasedOnConditions()
     {
@@ -255,11 +297,30 @@ public partial class ScheduleDirector : ContentPage
     {
         public int LessonName { get; set; }
         public int Day { get; set; }
+        public string DayName { get; set; }
         public string Room { get; set; }
+        public string Time { get; set; }
+        public string Group {  get; set; }
+        public string Teacher { get; set; }
         public string Str { get; set; }
     }
     public async void ChangeButtonClicked(object sender, EventArgs e)
     {
+        LoadSchedule();
         this.ShowPopup(new ChangeScheduleDirector());
+    }
+    public async void AddButtonClicked(object sender, EventArgs e)
+    {
+        LoadSchedule();
+        this.ShowPopup(new AddScheduleDirector());
+    }
+    public async void DeleteButtonClicked(object sender, EventArgs e)
+    {
+        LoadSchedule();
+        this.ShowPopup(new DeleteScheduleDirector());
+    }
+    public async void ReloadButtonClicked(object sender, EventArgs e)
+    {
+        LoadSchedule();
     }
 }

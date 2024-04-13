@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+            x:Class="wave.AddScheduleDirector"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Size="750, 470">
+    
+    <Frame Margin="20" BorderColor="DarkGrey">
+        <StackLayout>
+            
+            <Picker x:Name="DayPicker" Title="Select Day" />
+
+            <Picker x:Name="RoomPicker" Title="Room" />
+
+            <Label Text="Time"/>
+            <Entry x:Name="EntryLessonStart" Placeholder="Lesson start" />
+            <Entry x:Name="EntryLessonEnd" Placeholder="Lesson end"/>
+
+            <Picker x:Name="GroupPicker" Title="Select Group" />
+
+            <Button
+                FontSize="20"
+                Margin="0, 20, 20, 0"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Text="Добавить"
+                Clicked="AddLesson"/>
+
+        </StackLayout>
+    </Frame>
+</mct:Popup>
