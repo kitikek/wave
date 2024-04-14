@@ -48,7 +48,7 @@ namespace wave
 
                 emailLabel = new Label
                 {
-                    Text = "≈сли вы не нашли ответ на свой вопрос, напишите нам!\neamelnik_1@edu.hse.ru\nVdskachko@edu.hse.ru",
+                    Text = "≈сли вы не нашли ответ на свой вопрос, напишите нам!\neamelnik_1@edu.hse.ru\nVdskachko@edu.hse.ru\nevbezvodinskikh@edu.hse.ru",
                     Margin = new Thickness(30, 100, 30, 10),
                     HorizontalOptions = LayoutOptions.Center,
                     HorizontalTextAlignment = TextAlignment.Center,
