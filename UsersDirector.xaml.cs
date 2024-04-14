@@ -22,6 +22,9 @@ namespace wave
         List<int> UserIds = new List<int>();
         List<int> StudentIds = new List<int>();
         List<int> StudentIds1 = new List<int>();
+        List<int> StudentIdsAll = new List<int>();
+        List<int> ContractIds = new List<int>();
+
 
         public UsersDirector()
         {
@@ -46,11 +49,16 @@ namespace wave
                 pCourse1.ItemsSource = pCourse.ItemsSource;
                 GroupIds = FillPickerAndGetIds(ref pGroup, "SELECT CONCAT(group_name, ' (', user_surname, ' ', user_name, ', ', course_name, ' (', size_value, ' чел) ', scheme_value, ')'), group_id FROM groups JOIN course ON group_course_id=course_id JOIN size ON course_size_id=size_id JOIN scheme ON course_scheme_id=scheme_id JOIN teacher ON teacher_id=group_teacher_id JOIN users ON teacher_user_id=user_id ORDER BY group_name;");
                 ParentIds = FillPickerAndGetIds(ref pParent, "SELECT CONCAT(user_surname, \" \", user_name, \" \", user_patronymic), parent_id FROM parent JOIN users ON parent_user_id=user_id;");
-                UserIds = FillPickerAndGetIds(ref pUser, "SELECT CONCAT(users.user_surname, ' ', users.user_name, ' ', users.user_patronymic, ' (', usertype_name, ') (логин: ', user_login, ', пароль: ', user_password, ', телефон: ', user_phone), user_id FROM users JOIN usertype ON usertype_id=user_type_id ORDER BY usertype_id, user_surname;");
+                UserIds = FillPickerAndGetIds(ref pUser, "SELECT CONCAT(usertype_name, ': ', users.user_surname, ' ', users.user_name, ' ', users.user_patronymic, ' (логин: ', user_login, ', пароль: ', user_password, ', телефон: ', user_phone), user_id FROM users JOIN usertype ON usertype_id=user_type_id ORDER BY usertype_id, user_surname;");
                 FillPicker(ref pGroup1, "SELECT group_name FROM groups ORDER BY group_name;");
                 pGroup2.ItemsSource = pGroup1.ItemsSource;
                 pStudent.ItemsSource = new List<string>();
                 pStudent1.ItemsSource = new List<string>();
+                StudentIdsAll = FillPickerAndGetIds(ref pStudent2, "SELECT CONCAT(user_surname, ' ', user_name, ' ', user_patronymic), student.student_id FROM student JOIN users ON student_user_id=user_id ORDER BY user_surname, user_name;");
+                pCourse2.ItemsSource = pCourse1.ItemsSource;
+                pStudent3.ItemsSource = pStudent2.ItemsSource;
+                pContract.ItemsSource = new List<string>();
+
             };
 
             pGroup1.SelectedIndexChanged += (sender, e) =>
@@ -105,6 +113,34 @@ namespace wave
                         }
                         pStudent1.ItemsSource = items;
                         StudentIds1 = ids;
+                    }
+                }
+            };
+
+            pStudent3.SelectedIndexChanged += (sender, e) =>
+            {
+                if (pStudent3.SelectedItem != null)
+                {
+                    using (var con = new MySqlConnection(ConnString.connString))
+                    {
+                        con.Open();
+
+                        var items = new List<string>();
+                        var ids = new List<int>();
+                        using (var cmd = new MySqlCommand("SELECT CONCAT('(', course_name, ' (', size_value, ' чел) ', scheme_value, ', Скидка: ', contract_sale, 'руб.)'), contract_id FROM contract JOIN course ON contract_course_id=course_id AND contract_student_id=@Sid JOIN size ON size_id=course_size_id JOIN scheme ON scheme_id=course_scheme_id;", con))
+                        {
+                            cmd.Parameters.AddWithValue("@Sid", StudentIdsAll[pStudent3.SelectedIndex]);
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    items.Add(reader.GetString(0));
+                                    ids.Add(reader.GetInt32(1));
+                                }
+                            }
+                        }
+                        pContract.ItemsSource = items;
+                        ContractIds = ids;
                     }
                 }
             };
@@ -491,10 +527,66 @@ namespace wave
                 }
             };
 
+            //добавление нового договора на студента
+            btnAddContract.Clicked += (sender, e) =>
+            {
+                //проверка заполненности нужных списков
+                if (!string.IsNullOrEmpty(txtDiscount.Text) && pStudent2.SelectedItem!=null && pCourse2.SelectedItem!=null)
+                {
+                    using (var con = new MySqlConnection(ConnString.connString))
+                    {
+                        con.Open();
+
+                        //проверка наличия элемента с выбранным значением чтобы отменить добавление в случае создания такого же элемента
+                        using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM contract WHERE contract_student_id=@Sid AND contract_course_id=@Cid AND contract_sale=@Dis;", con))
+                        {
+                            cmd.Parameters.AddWithValue("@Sid", StudentIdsAll[pStudent2.SelectedIndex]);
+                            cmd.Parameters.AddWithValue("@Cid", CourseIds[pCourse2.SelectedIndex]);
+                            cmd.Parameters.AddWithValue("@Dis", Convert.ToInt32(txtDiscount.Text));
+                            if (Convert.ToInt64(cmd.ExecuteScalar()) > 0)
+                                return;
+                        }
+
+                        //добавление элемента в таблицу
+                        using (var cmd = new MySqlCommand("INSERT INTO `contract`(`contract_id`, `contract_student_id`, `contract_course_id`, `contract_sale`) VALUES (NULL, @Sid, @Cid, @Dis);", con))
+                        {
+                            cmd.Parameters.AddWithValue("@Sid", StudentIdsAll[pStudent2.SelectedIndex]);
+                            cmd.Parameters.AddWithValue("@Cid", CourseIds[pCourse2.SelectedIndex]);
+                            cmd.Parameters.AddWithValue("@Dis", Convert.ToInt32(txtDiscount.Text));
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    //обновление информации на странице
+                    BigLoad();
+                    txtDiscount.Text = "";
+                }
+            };
+
+            //удаление договора на студента
+            btnDelContract.Clicked += (sender, e) =>
+            {
+                //проверка заполненности нужных списков
+                if (pContract.SelectedItem != null)
+                {
+                    using (var con = new MySqlConnection(ConnString.connString))
+                    {
+                        con.Open();
+
+                        using (var cmd = new MySqlCommand("DELETE FROM `contract` WHERE contract_id=@Conid;", con))
+                        {
+                            cmd.Parameters.AddWithValue("@Conid", ContractIds[pContract.SelectedIndex]);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    //обновление информации на странице
+                    BigLoad();
+                }
+            };
+
             //установка событий проверки числовых значений
+            txtDiscount.TextChanged += OnEntryTextChanged;
             txtHours.TextChanged += OnEntryTextChanged;
             txtHoursCost.TextChanged += OnEntryTextChanged;
-
             //проверка на ввод числовых значений
             void OnEntryTextChanged(object sender, TextChangedEventArgs e)
             {
