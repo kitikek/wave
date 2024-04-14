@@ -213,10 +213,20 @@ namespace wave
                 con.Open();
 
                 //запросы
-                string marksQuery = "SELECT test_visit.test_visit_mark, test_visit_student_id, test_visit_test_id FROM groups JOIN students_groups ON groups.group_name=@GroupName AND groups.group_id=students_groups.group_id JOIN test_visit ON test_visit.test_visit_student_id=students_groups.student_id;";
+                string marksQuery = "SELECT test_visit_mark, test_visit_student_id, test_visit_test_id FROM groups JOIN test ON test.test_group_id=groups.group_id AND groups.group_name=@GroupName JOIN test_visit ON test_visit_test_id=test_id;";
 
                 // Получение количества строк и столбцов
                 int rowCount = StudentIds.Count, columnCount = TestIds.Count;
+
+                //уcтановка свойств столбцов
+                for (int j = 0; j < columnCount + 1; j++)
+                {
+                    ResultsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+                }
+                for (int i = 0; i < rowCount + 1; i++)
+                {
+                    ResultsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                }
 
                 //Заполнение первой ячейки
                 Label Label1 = new Label
@@ -279,15 +289,7 @@ namespace wave
                     }
                 }
 
-                //уcтановка свойств столбцов
-                for (int j = 0; j < columnCount + 1; j++)
-                {
-                    ResultsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-                }
-                for (int i = 0; i < rowCount + 1; i++)
-                {
-                    ResultsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                }
+                
             }
         }
     }

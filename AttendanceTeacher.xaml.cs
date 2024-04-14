@@ -236,7 +236,7 @@ namespace wave
                 con.Open();
 
                 //запросы
-                string attendanceQuery = "SELECT lesson_visit, student.student_id, lesson_exact.lesson_exact_id FROM groups JOIN lesson ON lesson.lesson_group_id=groups.group_id AND groups.group_name=@GroupName JOIN lesson_exact ON lesson_exact.lesson_exact_lesson_id=lesson.lesson_id JOIN lesson_visit ON lesson_visit.lesson_visit_lesson_exact_id=lesson_exact.lesson_exact_id JOIN student ON student.student_id=lesson_visit.lesson_visit_student_id JOIN users ON users.user_id=student.student_user_id;"; // ORDER BY users.user_surname ASC, lesson_exact.lesson_exact_data ASC
+                string attendanceQuery = "SELECT lesson_visit, lesson_visit_student_id, lesson_exact.lesson_exact_id FROM groups JOIN lesson ON lesson.lesson_group_id=groups.group_id AND groups.group_name=@GroupName JOIN lesson_exact ON lesson_exact.lesson_exact_lesson_id=lesson.lesson_id JOIN lesson_visit ON lesson_visit.lesson_visit_lesson_exact_id=lesson_exact.lesson_exact_id;"; // ORDER BY users.user_surname ASC, lesson_exact.lesson_exact_data ASC
 
                 // Получение количества строк и столбцов
                 int rowCount = StudentIds.Count, columnCount = LessonIds.Count;
