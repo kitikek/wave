@@ -25,6 +25,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <!-- Строка 1 +размер группы  +схема оплаты-->
@@ -64,7 +66,7 @@
             <Entry  x:Name="txtLogin" Placeholder="Логин:" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
             <DatePicker x:Name="Dat" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Center" BackgroundColor="Green"/>
             <!-- Строка 8 отч пар (род)-->
-            <Entry  x:Name="txtFatherName" Placeholder="Фамилия:" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+            <Entry  x:Name="txtFatherName" Placeholder="Отчество:" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
             <Entry  x:Name="txtPassword" Placeholder="Пароль:" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
             <Picker x:Name="pParent" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" Title="(только студентам) Родитель:" Margin="10" TitleColor="Green"/>
             <!-- Строка 9 -пользователь -->
@@ -77,6 +79,15 @@
             <Picker x:Name="pGroup2" Grid.Row="9" Grid.Column="4" Title="Группа:" Margin="10"/>
             <Picker x:Name="pStudent1" Grid.Row="9" Grid.Column="5" Title="Студент:" Margin="10"/>
             <Button x:Name="btnDelStudGr" Grid.Row="9" Grid.Column="6" Text="Удалить из группы" Margin="20"/>
+            <!-- Строка 11 добавить договор на студента-->
+            <Picker x:Name="pStudent2" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Title="Студент:" Margin="10"/>
+            <Picker x:Name="pCourse2" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Title="Курс:" Margin="10" />
+            <Entry  x:Name="txtDiscount" Placeholder="Введите скидку:" Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="2" Margin="10"/>
+            <Button x:Name="btnAddContract" Grid.Row="10" Grid.Column="6" Text="Создать договор" Margin="20"/>
+            <!-- Строка 12 удалить договор на студента-->
+            <Picker x:Name="pStudent3" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Title="Студент:" Margin="10"/>
+            <Picker x:Name="pContract" Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="3" Title="Договор:" Margin="10"/>
+            <Button x:Name="btnDelContract" Grid.Row="11" Grid.Column="6" Text="Удалить договор" Margin="20"/>
         </Grid>
     </ScrollView>
 </ContentPage>
