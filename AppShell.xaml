@@ -53,6 +53,13 @@
             Route="Grade" 
             Icon="grade.png"/>
 
+        <ShellContent
+            x:Name="SupportContent"
+            Title="Support"
+            ContentTemplate="{DataTemplate local:Support}"
+            Route="Support" 
+            Icon="support.png"/>
+
     </FlyoutItem>
 
 
