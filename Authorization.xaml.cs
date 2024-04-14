@@ -3,6 +3,8 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using MySqlConnector;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace wave;
 
@@ -27,23 +29,23 @@ public partial class Authorization : ContentPage
 
         if (WhoAreYou.isDirectorSelected)
         {
-            selectedUserTypeId = 1; 
+            selectedUserTypeId = 1;
         }
         else if (WhoAreYou.isTeacherSelected)
         {
-            selectedUserTypeId = 2; 
+            selectedUserTypeId = 2;
         }
         else if (WhoAreYou.isStudentSelected)
         {
-            selectedUserTypeId = 3; 
+            selectedUserTypeId = 3;
         }
         else if (WhoAreYou.isParentSelected)
         {
-            selectedUserTypeId = 4; 
+            selectedUserTypeId = 4;
         }
         else
         {
-            return false; 
+            return false;
         }
 
         string connectionString = ConnString.connString;
@@ -52,14 +54,30 @@ public partial class Authorization : ContentPage
         {
             connection.Open();
 
-            string query = "SELECT COUNT(*) FROM users WHERE user_login = @login AND user_password = @password AND user_type_id = @userTypeId";
+            string query = "SELECT user_login, user_password FROM users WHERE user_login = @login AND user_type_id = @userTypeId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@login", login);
-            command.Parameters.AddWithValue("@password", password);
             command.Parameters.AddWithValue("@userTypeId", selectedUserTypeId);
 
-            int count = Convert.ToInt32(command.ExecuteScalar());
-            isValid = count > 0;
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    string hashedPasswordFromDb = reader.GetString("user_password");
+
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                        byte[] passwordHashBytes = sha256.ComputeHash(passwordBytes);
+                        string hashedPasswordInput = BitConverter.ToString(passwordHashBytes).Replace("-", "").ToLower();
+
+                        if (hashedPasswordInput == hashedPasswordFromDb)
+                        {
+                            isValid = true;
+                        }
+                    }
+                }
+            }
 
             connection.Close();
         }

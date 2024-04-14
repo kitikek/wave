@@ -1,4 +1,6 @@
 using Microsoft.Maui.Controls;
+using System.Security.Cryptography;
+using System.Text;
 using MySqlConnector;
 
 namespace wave
@@ -341,6 +343,14 @@ namespace wave
                     {
                         con.Open();
 
+                        string hashedPassword;
+                        using (SHA256 sha256 = SHA256.Create())
+                        {
+                            byte[] passwordBytes = Encoding.UTF8.GetBytes(txtPassword.Text);
+                            byte[] passwordHashBytes = sha256.ComputeHash(passwordBytes);
+                            hashedPassword = BitConverter.ToString(passwordHashBytes).Replace("-", "").ToLower();
+                        }
+
                         //проверка наличия элемента с выбранным значением чтобы отменить добавление в случае создания такого же элемента
                         using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM users WHERE user_surname=@Sur AND user_name=@Nam AND user_patronymic=@Fat AND user_phone=@Phone AND user_login=@Log AND user_password=@Pas AND user_type_id=@TypeId;", con))
                         {
@@ -349,7 +359,7 @@ namespace wave
                             cmd.Parameters.AddWithValue("@Fat", txtFatherName.Text);
                             cmd.Parameters.AddWithValue("@Phone", txtPhoneNumber.Text);
                             cmd.Parameters.AddWithValue("@Log", txtLogin.Text);
-                            cmd.Parameters.AddWithValue("@Pas", txtPassword.Text);
+                            cmd.Parameters.AddWithValue("@Pas", hashedPassword);
                             cmd.Parameters.AddWithValue("@TypeId", TypeIds[pType.SelectedIndex]);
                             if (Convert.ToInt64(cmd.ExecuteScalar()) > 0)
                                 return;
@@ -363,7 +373,7 @@ namespace wave
                             cmd.Parameters.AddWithValue("@Fat", txtFatherName.Text);
                             cmd.Parameters.AddWithValue("@Phone", txtPhoneNumber.Text);
                             cmd.Parameters.AddWithValue("@Log", txtLogin.Text);
-                            cmd.Parameters.AddWithValue("@Pas", txtPassword.Text);
+                            cmd.Parameters.AddWithValue("@Pas", hashedPassword);
                             cmd.Parameters.AddWithValue("@TypeId", TypeIds[pType.SelectedIndex]);
                             cmd.ExecuteNonQuery();
                             Uid = cmd.LastInsertedId;
