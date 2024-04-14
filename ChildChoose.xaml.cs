@@ -1,5 +1,7 @@
 using MySqlConnector;
 
+
+
 namespace wave;
 
 public partial class ChildChoose : ContentPage
@@ -8,6 +10,7 @@ public partial class ChildChoose : ContentPage
 
     List<Child> childrenList = new List<Child>();
     List<int> idChild = new List<int>();
+    public static int chosenId;
     public ChildChoose()
     {
         InitializeComponent();
@@ -74,6 +77,7 @@ public partial class ChildChoose : ContentPage
         }
         for (int j = 0; j < childrenList.Count; j++)
         {
+            int childId = childrenList[j].Id;
             Button ChildChooseButton = new Button
             {
                 Text = childrenList[j].Name,
@@ -85,7 +89,8 @@ public partial class ChildChoose : ContentPage
             };
             ChildChooseButton.Clicked += async (sender, e) =>
             {
-                await Shell.Current.GoToAsync("//Parent");
+                chosenId = childId;
+                await Shell.Current.GoToAsync("//Parent//Notification");
             };
             (Content as VerticalStackLayout)?.Children.Add(ChildChooseButton);
         }

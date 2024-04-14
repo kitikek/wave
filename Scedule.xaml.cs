@@ -8,10 +8,12 @@ public partial class Scedule : ContentPage
     {
         InitializeComponent();
         LoadSchedule();
+        
     }
 
-    private void LoadSchedule()
+    public void LoadSchedule()
     {
+        LessonsStackLayout.Children.Clear();
         string connectionString = ConnString.connString;
         using (MySqlConnection connection = new MySqlConnection(connectionString))
         {
@@ -80,7 +82,7 @@ public partial class Scedule : ContentPage
                     LessonsStackLayout.Children.Add(studentNotFoundErrorLabel);
                 }
             }
-            if (WhoAreYou.isTeacherSelected)
+            else if (WhoAreYou.isTeacherSelected)
             {
                 int teacherId = GetTeacherIdByLogin(connection, desiredLogin);
 
@@ -123,6 +125,65 @@ public partial class Scedule : ContentPage
                     };
 
                     LessonsStackLayout.Children.Add(teacherNotFoundErrorLabel);
+                }
+            }
+            else if (WhoAreYou.isParentSelected)
+            {
+                int childId = GetStudentIdByUserId(connection, ChildChoose.chosenId);
+                if (childId != 0)
+                {
+                    int groupId = GetGroupIdByStudentId(connection, childId);
+                    if (groupId != 0)
+                    {
+                        List<string> lessonsInfo = GetLessonsInfoByGroupId(connection, groupId);
+
+                        if (lessonsInfo.Count == 0)
+                        {
+                            Label noLessonsLabel = new Label
+                            {
+                                Text = "Расписания пока нет",
+                                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                VerticalOptions = LayoutOptions.CenterAndExpand
+                            };
+
+                            LessonsStackLayout.Children.Add(noLessonsLabel);
+                        }
+                        else
+                        {
+                            foreach (string lessonInfo in lessonsInfo)
+                            {
+                                var frame = new Frame
+                                {
+                                    Content = new Label { Text = lessonInfo },
+                                    Margin = new Thickness(10)
+                                };
+
+                                LessonsStackLayout.Children.Add(frame);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Label groupNotFoundErrorLabel = new Label
+                        {
+                            Text = "Не найдена группа",
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            VerticalOptions = LayoutOptions.CenterAndExpand
+                        };
+
+                        LessonsStackLayout.Children.Add(groupNotFoundErrorLabel);
+                    }
+                }
+                else
+                {
+                    Label studentNotFoundErrorLabel = new Label
+                    {
+                        Text = "Не найден ученик",
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.CenterAndExpand
+                    };
+
+                    LessonsStackLayout.Children.Add(studentNotFoundErrorLabel);
                 }
             }
 
@@ -175,7 +236,7 @@ public partial class Scedule : ContentPage
     {
         List<string> lessonsInfo = new List<string>();
 
-        string query = "SELECT l.lesson_start, l.lesson_end, g.group_name, d.day_name, r.room_name FROM lesson l JOIN groups g ON l.lesson_group_id = g.group_id JOIN day d ON l.lesson_day_id = d.day_id JOIN room r ON l.lesson_room_id = r.room_id WHERE l.lesson_group_id = @groupId";
+        string query = "SELECT l.lesson_start, l.lesson_end, g.group_name, d.day_name, r.room_name FROM lesson l JOIN groups g ON l.lesson_group_id = g.group_id JOIN day d ON l.lesson_day_id = d.day_id JOIN room r ON l.lesson_room_id = r.room_id WHERE l.lesson_group_id = @groupId ORDER BY d.day_id";
 
         using (MySqlCommand command = new MySqlCommand(query, connection))
         {
@@ -186,8 +247,9 @@ public partial class Scedule : ContentPage
                 while (reader.Read())
                 {
                     string lessonInfo = $"Группа: {reader["group_name"]},\n" +
-                        $"{reader["day_name"]}, " + $" {reader["lesson_start"]} - {reader["lesson_end"]}, \n" +
-                        $"Кабинет: {reader["room_name"]}";
+                                        $"{reader["day_name"]}, " + $" {reader["lesson_start"]} - {reader["lesson_end"]}, \n" +
+                                        $"Кабинет: {reader["room_name"]}";
+
                     lessonsInfo.Add(lessonInfo);
                 }
             }
@@ -214,7 +276,26 @@ public partial class Scedule : ContentPage
             }
         }
     }
+    int GetStudentIdByUserId(MySqlConnection connection, int userId)
+    {
+        int studentId = 0;
+        string query = "SELECT student_id FROM student WHERE student_user_id = @userId";
 
+        using (MySqlCommand cmd = new MySqlCommand(query, connection))
+        {
+            cmd.Parameters.AddWithValue("@userId", userId);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    studentId = reader.GetInt32("student_id");
+                }
+            }
+        }
+
+        return studentId;
+    }
     private List<string> GetLessonsInfoByTeacherId(MySqlConnection connection, int teacherId)
     {
         List<string> lessonsInfo = new List<string>();
@@ -232,7 +313,7 @@ public partial class Scedule : ContentPage
                     string lessonInfo = $"Группа: {reader["group_name"]},\n" +
                         $"{reader["day_name"]}, " + $" {reader["lesson_start"]} - {reader["lesson_end"]}, \n" +
                         $"Кабинет: {reader["room_name"]}";
-                    lessonsInfo.Add(lessonInfo);
+                        lessonsInfo.Add(lessonInfo);
                 }
             }
         }

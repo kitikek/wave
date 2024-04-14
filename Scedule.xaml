@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="wave.Scedule"
              Title="Schedule">
-    <VerticalStackLayout>
-        <ScrollView>
-            <StackLayout x:Name="LessonsStackLayout">
-            </StackLayout>
-        </ScrollView>
-    </VerticalStackLayout>
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout x:Name="LessonsStackLayout"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
