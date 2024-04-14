@@ -116,6 +116,9 @@
 	  <MauiXaml Update="ScheduleDirector.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Support.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="UsersDirector.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
