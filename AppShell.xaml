@@ -54,7 +54,7 @@
             Icon="grade.png"/>
 
         <ShellContent
-            x:Name="SupportContent"
+            x:Name="SupportContentStudent"
             Title="Support"
             ContentTemplate="{DataTemplate local:Support}"
             Route="Support" 
@@ -106,7 +106,7 @@
             Icon="documents.png"/>
 
         <ShellContent
-            x:Name="SupportContent"
+            x:Name="SupportContentParent"
             Title="Support"
             ContentTemplate="{DataTemplate local:Support}"
             Route="Support" 
