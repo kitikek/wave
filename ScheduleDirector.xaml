@@ -6,7 +6,7 @@
 
     <StackLayout>
 
-        <Frame BackgroundColor="WhiteSmoke" HasShadow="False" BorderColor="DeepPink"  CornerRadius="5" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Frame BackgroundColor="WhiteSmoke" HasShadow="False"  CornerRadius="5" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid RowSpacing="-10" ColumnSpacing="0" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                 <Grid.ColumnDefinitions>

@@ -83,11 +83,12 @@ namespace wave
                 Frame answerFrame = new Frame
                 {
                     Padding = new Thickness(5),
-                    BackgroundColor = Color.FromHex("#ADD8E6"),
+                    BackgroundColor = Color.FromHex("#0c447f"),
                     Margin = new Thickness(30, 0, 10, 0),
                     Content = new Label
                     {
-                        Text = question.Answer
+                        Text = question.Answer,
+                        TextColor = Color.FromHex("#ffffff")
                     }
                 };
 

@@ -81,7 +81,7 @@ public partial class ChildChoose : ContentPage
             Button ChildChooseButton = new Button
             {
                 Text = childrenList[j].Name,
-                FontSize = 30,
+                FontSize = 20,
                 Margin = 20,
                 MaximumWidthRequest = 400,
                 MinimumWidthRequest = 300,

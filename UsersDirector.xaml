@@ -64,11 +64,11 @@
             <!-- Строка 7 имя лог (др) -->
             <Entry  x:Name="txtName" Placeholder="Имя:" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
             <Entry  x:Name="txtLogin" Placeholder="Логин:" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
-            <DatePicker x:Name="Dat" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Center" BackgroundColor="Green"/>
+            <DatePicker x:Name="Dat" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Center" BackgroundColor="Red"/>
             <!-- Строка 8 отч пар (род)-->
             <Entry  x:Name="txtFatherName" Placeholder="Отчество:" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
             <Entry  x:Name="txtPassword" Placeholder="Пароль:" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"/>
-            <Picker x:Name="pParent" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" Title="(только студентам) Родитель:" Margin="10" TitleColor="Green"/>
+            <Picker x:Name="pParent" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" Title="(только студентам) Родитель:" Margin="10" TitleColor="Red"/>
             <!-- Строка 9 -пользователь -->
             <Picker x:Name="pUser" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Title="Пользователь:" Margin="10"/>
             <Button x:Name="btnDelUser" Grid.Row="8" Grid.Column="6" Text="Удалить пользователя" Margin="20"/>

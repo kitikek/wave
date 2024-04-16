@@ -97,6 +97,7 @@ public partial class NotificationsDirector : ContentPage
                 Frame notificationFrame = new Frame
                 {
                     BorderColor = Color.FromHex("#2D4D8F"),
+                    BackgroundColor = Color.FromHex("#ffffff"),
                     CornerRadius = 5,
                     Padding = 10,
                     Margin = new Thickness(10),
