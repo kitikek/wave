@@ -30,7 +30,7 @@ namespace wave
                 using (var cmd = new MySqlCommand("SELECT group_name FROM groups JOIN teacher ON group_teacher_id=teacher_id JOIN users ON user_id=teacher_user_id AND user_login=@log AND user_password=@pas ORDER BY group_name ASC;", con))
                 {
                     cmd.Parameters.AddWithValue("@log", Authorization.Login);
-                    cmd.Parameters.AddWithValue("@pas", Authorization.Password);
+                    cmd.Parameters.AddWithValue("@pas", Authorization.HashedPassword);
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -73,17 +73,19 @@ namespace wave
                 //проверка заполненности нужных списков
                 if (!string.IsNullOrEmpty(TestName.Text) && !string.IsNullOrEmpty(groupName))
                 {
+                    long newId = 0;
                     using (var con = new MySqlConnection(ConnString.connString))
                     {
                         con.Open();
 
                         //проверка наличия теста с выбранными свойствами чтобы отменить добавление в случае создания такого же теста
-                        using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM test WHERE test.test_name=@TN AND test.test_date=STR_TO_DATE(@D, \"%d.%m.%Y\");", con))
+                        using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM test JOIN groups ON test_group_id=groups.group_id AND groups.group_name=@GroupName WHERE test.test_name=@TN AND test.test_date=STR_TO_DATE(@D, \"%d.%m.%Y\");", con))
                         {
                             var TN = TestName.Text;
                             var D = Dat.Date.ToShortDateString();
                             cmd.Parameters.AddWithValue("@TN", TN);
                             cmd.Parameters.AddWithValue("@D", D);
+                            cmd.Parameters.AddWithValue("@GroupName", groupName);
                             if (Convert.ToInt64(cmd.ExecuteScalar()) > 0)
                                 return;
                         }
@@ -97,13 +99,14 @@ namespace wave
                             cmd.Parameters.AddWithValue("@D", D);
                             cmd.Parameters.AddWithValue("@GroupName", groupName);
                             cmd.ExecuteNonQuery();
+                            newId = cmd.LastInsertedId;
                         }
                     }
                     //обновление информации на странице
                     BigLoad(sender, e);
 
                     //установка значений списков для добавления учеников
-                    TestPicker1.SelectedIndex = TestIds.Count - 1;
+                    TestPicker1.SelectedIndex = TestIds.IndexOf((int)newId);
                     StudentPicker.SelectedIndex = 0;
                 }
             };

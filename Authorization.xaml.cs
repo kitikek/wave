@@ -12,6 +12,7 @@ public partial class Authorization : ContentPage
 {
     public static string Login { get; set; }
     public static string Password { get; set; }
+    public static string HashedPassword { get; set; }
     private bool isPasswordVisible = false;
     private Color originalEntryColor;
     public Authorization()
@@ -69,9 +70,9 @@ public partial class Authorization : ContentPage
                     {
                         byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
                         byte[] passwordHashBytes = sha256.ComputeHash(passwordBytes);
-                        string hashedPasswordInput = BitConverter.ToString(passwordHashBytes).Replace("-", "").ToLower();
+                        HashedPassword = BitConverter.ToString(passwordHashBytes).Replace("-", "").ToLower();
 
-                        if (hashedPasswordInput == hashedPasswordFromDb)
+                        if (HashedPassword == hashedPasswordFromDb)
                         {
                             isValid = true;
                         }

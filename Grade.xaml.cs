@@ -27,7 +27,7 @@ public partial class Grade : ContentPage
             using (MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*), student_id FROM student JOIN users ON student_user_id=user_id AND user_login=@l AND user_password=@p", con))
             {
                 cmd.Parameters.AddWithValue("@l", Authorization.Login);
-                cmd.Parameters.AddWithValue("@p", Authorization.Password);
+                cmd.Parameters.AddWithValue("@p", Authorization.HashedPassword);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())

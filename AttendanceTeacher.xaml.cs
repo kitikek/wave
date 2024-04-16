@@ -49,7 +49,7 @@ namespace wave
                 using (var cmd = new MySqlCommand("SELECT group_name FROM groups JOIN teacher ON group_teacher_id=teacher_id JOIN users ON user_id=teacher_user_id AND user_login=@log AND user_password=@pas ORDER BY group_name ASC;", con))
                 {
                     cmd.Parameters.AddWithValue("@log", Authorization.Login);
-                    cmd.Parameters.AddWithValue("@pas", Authorization.Password);
+                    cmd.Parameters.AddWithValue("@pas", Authorization.HashedPassword);
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -97,10 +97,11 @@ namespace wave
                 //проверка заполненности нужных списков
                 if (SchedulePicker.SelectedItem!=null && !string.IsNullOrEmpty(groupName))
                 {
+                    long newId = 0;
                     using (var con = new MySqlConnection(ConnString.connString))
                     {
                         con.Open();
-
+                        
                         //проверка наличия урока с выбранными свойствами чтобы отменить добавление в случае создания такого же урока
                         using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM lesson_exact WHERE lesson_exact_data=STR_TO_DATE(@D, \"%d.%m.%Y\") AND lesson_exact_lesson_id=@Lid;", con))
                         {
@@ -120,13 +121,14 @@ namespace wave
                             cmd.Parameters.AddWithValue("@Lid", Lid);
                             cmd.Parameters.AddWithValue("@D", D);
                             cmd.ExecuteNonQuery();
+                            newId = cmd.LastInsertedId;
                         }
                     }
                     //обновление информации на странице
                     BigLoad(sender, e);
 
                     //установка значений списков для добавления учеников
-                    LessonPicker1.SelectedIndex = LessonIds.Count-1;
+                    LessonPicker1.SelectedIndex = LessonIds.IndexOf((int)newId);
                     StudentPicker.SelectedIndex = 0;
                 }
             };
