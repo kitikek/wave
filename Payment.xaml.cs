@@ -178,6 +178,7 @@ public partial class Payment : ContentPage
         string formattedPaymentDate = parsedPaymentDate.ToString("dd.MM.yyyy");
         Frame paymentFrame = new Frame
         {
+            BackgroundColor = Color.FromHex("#fffff"),
             Content = new StackLayout
             {
                 Children =

@@ -50,6 +50,7 @@ public partial class Scedule : ContentPage
                             {
                                 var frame = new Frame
                                 {
+                                    BackgroundColor = Color.FromHex("#ffffff"),
                                     Content = new Label { Text = lessonInfo },
                                     Margin = new Thickness(10)
                                 };
@@ -107,6 +108,7 @@ public partial class Scedule : ContentPage
                         {
                             var frame = new Frame
                             {
+                                BackgroundColor = Color.FromHex("#ffffff"),
                                 Content = new Label { Text = lessonInfo },
                                 Margin = new Thickness(10)
                             };
@@ -154,6 +156,7 @@ public partial class Scedule : ContentPage
                             {
                                 var frame = new Frame
                                 {
+                                    BackgroundColor = Color.FromHex("#ffffff"),
                                     Content = new Label { Text = lessonInfo },
                                     Margin = new Thickness(10)
                                 };

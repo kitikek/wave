@@ -89,7 +89,7 @@ public partial class Authorization : ContentPage
         if (!string.IsNullOrEmpty(LoginEntry.Text) && !string.IsNullOrEmpty(PasswordEntry.Text))
         {
             LoginButton.IsEnabled = true;
-            LoginButton.BackgroundColor = Colors.BlueViolet;
+            LoginButton.BackgroundColor = Color.FromHex("#0c447f");
         }
         else
         {
