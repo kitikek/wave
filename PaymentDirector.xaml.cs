@@ -1,5 +1,7 @@
 using MySqlConnector;
 using System.Data;
+using OfficeOpenXml;
+using System.IO;
 
 namespace wave;
 
@@ -50,13 +52,57 @@ public partial class PaymentDirector : ContentPage
             chequeEntry,
             datePicker,
             new Button { Text = "Добавить платеж", Command = new Command(AddPayment) },
+            new Button { Text = "Выгрузить в Excel", Command = new Command(ExportToExcel) },
             scrollView
         },
             VerticalOptions = LayoutOptions.FillAndExpand 
         };
+        
+
+
         LoadGroups();
     }
+    private void ExportToExcel()
+    {
+        try
+        {
 
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            string selectedGroup = groupPicker.SelectedItem?.ToString();
+            DateTime Fulldate = DateTime.Now;
+            string date = Fulldate.ToString("dd.MM.yyyy");
+            string fileName = $"{selectedGroup}_payments_{date}.xlsx";
+            string filePath = @"C:\Users\79519\OneDrive\Рабочий стол\Курсач\" + fileName;
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Платежи");
+                worksheet.Cells[1, 1].Value = "ФИО";
+                worksheet.Cells[1, 2].Value = "Сумма платежа";
+                worksheet.Cells[1, 3].Value = "Детали платежа";
+                worksheet.Cells[1, 4].Value = "Дата платежа";
+
+                int row = 1;
+                DataTable paymentData = GetPayments(selectedGroup);
+                foreach (DataRow rowData in paymentData.Rows)
+                {
+                    int columnIndex = 2;
+                    foreach (var item in rowData.ItemArray)
+                    {
+                        worksheet.Cells[row, columnIndex].Value = item.ToString();
+                        columnIndex++;
+                    }
+                    row++;
+                }
+                package.Save();
+            }
+
+            DisplayAlert("Выгрузка завершена", $"Данные платежей для группы {selectedGroup} успешно выгружены в файл {fileName}", "OK");
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Ошибка", $"Возникла ошибка при выгрузке данных в Excel: {ex.Message}", "OK");
+        }
+    }
     private void LoadGroups()
     {
         string connectionString = ConnString.connString;
@@ -249,7 +295,32 @@ public partial class PaymentDirector : ContentPage
             }
         }
     }
+    private DataTable GetPayments(string selectedGroup)
+    {
+        DataTable paymentData = new DataTable();
+        string connectionString = ConnString.connString;
 
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            string query = @"SELECT payment_sum, payment_details, payment_date
+                             FROM payment
+                             INNER JOIN contract ON payment.payment_contract_id = contract.contract_id
+                             INNER JOIN groups ON contract.contract_course_id = groups.group_id
+                             WHERE groups.group_name = @GroupName";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@GroupName", selectedGroup);
+
+            connection.Open();
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+            {
+                adapter.Fill(paymentData);
+            }
+        }
+
+        return paymentData;
+    }
     private void LoadPaymentInfo(string selectedStudentName, string selectedStudentSurname)
     {
         string connectionString = ConnString.connString;
