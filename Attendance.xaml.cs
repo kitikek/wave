@@ -31,7 +31,7 @@ public partial class Attendance : ContentPage
                 cmd.Parameters.AddWithValue("@p", Authorization.HashedPassword);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+                if (reader.Read())
                 {
                     if (reader.GetInt32(0) > 0)
                     {

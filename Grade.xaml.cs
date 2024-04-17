@@ -9,6 +9,7 @@ public class GradeItem
     public string? Name { get; set; }
     public string? Date { get; set; }
     public string? Grade { get; set; }
+    public string? Group { get; set; }
 }
 
 public partial class Grade : ContentPage
@@ -17,7 +18,7 @@ public partial class Grade : ContentPage
     {
         InitializeComponent();
 
-        var items = new List<GradeItem> { new GradeItem { Name = "Тест:", Date = "Дата:", Grade = "Оценка:" } };
+        var items = new List<GradeItem> { new GradeItem { Name = "Тест:", Date = "Дата:", Grade = "Оценка:", Group="Группа:" } };
         var cs = ConnString.connString;
         int id = 0;
 
@@ -43,9 +44,12 @@ public partial class Grade : ContentPage
         using (var con = new MySqlConnection(cs))
         {
             con.Open();
-            string sql = "SELECT test.test_name, test.test_date, test_visit.test_visit_mark " +
-                "FROM test, test_visit " +
-                "WHERE test_visit.test_visit_student_id=@id AND test_visit.test_visit_test_id=test.test_id " +
+            string sql = "SELECT test_name, test_date, test_visit_mark, group_name " +
+                "FROM test " +
+                "JOIN test_visit " +
+                "ON test_visit_student_id=@id AND test_visit_test_id=test_id " +
+                "JOIN groups " +
+                "ON test_group_id=group_id " +
                 "ORDER BY test.test_date DESC;";
             using (MySqlCommand cmd = new MySqlCommand(sql, con))
             {
@@ -55,14 +59,14 @@ public partial class Grade : ContentPage
                 while (reader.Read())
                 {
                     string formattedDate = reader.GetDateTime(1).ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
-                    items.Add(new GradeItem { Name = reader.GetString(0), Date = formattedDate, Grade = reader.GetString(2) });
+                    items.Add(new GradeItem { Name = reader.GetString(0), Date = formattedDate, Grade = reader.GetString(2), Group = reader.GetString(3) });
                 }
             }
         }
 
         if (items.Count == 1)
         {
-            items.Add(new GradeItem { Name = "Оценок пока нет", Date = "Никогда", Grade = "Ничего" });
+            items.Add(new GradeItem { Name = "Оценок пока нет", Date = "", Grade = "", Group = "" });
         };
 
         gradeList.ItemsSource = items;

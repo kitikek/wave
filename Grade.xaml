@@ -19,7 +19,15 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium"/>
-                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding Date}" FontSize="Small"/>
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Small">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Date}" />
+                                        <Span Text=" - " />
+                                        <Span Text="{Binding Group}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
                             <Label Grid.Column="1" Grid.RowSpan="2" Text="{Binding Grade}" FontSize="Large" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,15,0"/>
                         </Grid>
                     </ViewCell>
